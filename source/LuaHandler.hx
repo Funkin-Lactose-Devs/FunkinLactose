@@ -443,3 +443,4 @@ class HScript
 	}
 	#end
 }
+#end
