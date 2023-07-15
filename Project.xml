@@ -137,7 +137,7 @@
 	<!--<haxelib name="newgrounds" unless="switch"/>-->
 	<!--<haxelib name="faxe" if='switch'/>  eww what is this funkin rewritten??????-->
 	<haxelib name="polymod" if="desktop"/>
-	<haxelib name="hxcpp-debug-server" if="desktop debug"/>
+	<!--<haxelib name="hxcpp-debug-server" if="desktop debug"/>-->
 	<!--<haxelib name="hxCodec" if="desktop || mobile" unless="32bits" />-->
 	<haxelib name="linc_luajit" if="desktop || mobile" />
 	
@@ -157,7 +157,7 @@
 	<!-- ______________________________ Haxedefines _____________________________ -->
 
 	<!--Enable the Flixel core recording system-->
-	<!--<haxedef name="FLX_RECORD" />-->
+	<haxedef name="FLX_RECORD" />
 
 	<!--Disable the right and middle mouse buttons-->
 	<!-- <haxedef name="FLX_NO_MOUSE_ADVANCED" /> -->
