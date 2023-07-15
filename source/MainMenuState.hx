@@ -261,12 +261,11 @@ class MainMenuState extends MusicBeatState
 		if (FlxG.keys.justPressed.SEVEN)
 			{
 				FlxG.switchState(new CutsceneAnimTestState());
-				Application.current.window.onFocusOut.remove(onWindowFocusOut);
 	
 				#if discord_rpc
 				DiscordClient.changePresence("Cutscene Animation Debug", null, null, true);
 				#end
-			}
+		}
 
 		if (_exiting)
 			menuItems.enabled = false;

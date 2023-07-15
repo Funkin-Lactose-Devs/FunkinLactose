@@ -47,7 +47,7 @@ class OptionsState extends MusicBeatState
 		var controls = addPage(Controls, new ControlsMenu());
 		var colors = addPage(Colors, new ColorsMenu());
 
-		#if desktop
+		#if polymod
 		var mods = addPage(Mods, new ModMenu());
 		#end
 
@@ -58,7 +58,7 @@ class OptionsState extends MusicBeatState
 			colors.onExit.add(switchPage.bind(Options));
 			preferences.onExit.add(switchPage.bind(Options));
 
-			#if desktop
+			#if polymod 
 			mods.onExit.add(reloadMod);
 			#end
 		}
@@ -114,7 +114,7 @@ class OptionsState extends MusicBeatState
 		FlxG.switchState(new MainMenuState());
 	}
 
-	#if Polymod
+	#if polymod
 	function reloadMod()
 	{
 		var rawEnabledMods:String = "";
