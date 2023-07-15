@@ -127,7 +127,7 @@ class ChartingState extends MusicBeatState
 		}
 
 		FlxG.mouse.visible = true;
-		FlxG.save.bind('funkin', 'charlescatyt');
+		FlxG.save.bind('funkin', 'ninjamuffin99');
 
 		tempBpm = _song.bpm;
 
