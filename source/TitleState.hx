@@ -93,13 +93,14 @@ class TitleState extends MusicBeatState
 			},
             frameworkParams: {
                 assetLibraryPaths: [
-                    "songs" => "songs",
-                    "stages" => "stages",
+					"characters" => "characters",// softcoded thing
+                    "songs" => "songs",// softcoded thing
+                    "stages" => "stages", // softcoded thing, planned
                     "shared" => "shared",
-                    "fonts" => "fonts",
-					"weeks" => "weeks",
+                    "fonts" => "fonts",// softcoded thing(?)
+					"weeks" => "weeks",// softcoded thing
 					"data" => "data",
-					"scripts" => "scripts",
+					"scripts" => "scripts",// softcoded thing
 					"images" => "images",
 					"music" => "music",
 					"sounds" => "sounds",
@@ -336,7 +337,7 @@ class TitleState extends MusicBeatState
 		logo.antialiasing = true;
 		// add(logo);
 
-		// FlxTween.tween(logoBl, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
+		FlxTween.tween(logoBl, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
 		// FlxTween.tween(logo, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG, startDelay: 0.1});
 
 		credGroup = new FlxGroup();

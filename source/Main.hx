@@ -233,9 +233,9 @@ class Main extends Sprite
 				focusMusicTween.cancel();
 			focusMusicTween = FlxTween.tween(FlxG.sound, {volume: newVol}, 0.5);
 
-			// Conserve power by lowering draw framerate when unfocuced
+			/* // Conserve power by lowering draw framerate when unfocuced
 			FlxG.updateFramerate = 60;
-			FlxG.drawFramerate = 60;
+			FlxG.drawFramerate = 60;*/
 		}
 	}
 

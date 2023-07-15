@@ -2036,8 +2036,10 @@ class PlayState extends MusicBeatState
 			#end
 		}
 
+		#if debug
 		if (FlxG.keys.justPressed.NINE)
 			iconP1.swapOldIcon();
+		#end
 
 		// FlxG.watch.addQuick('VOL', vocals.amplitudeLeft);
 		// FlxG.watch.addQuick('VOLRight', vocals.amplitudeRight);
@@ -2066,10 +2068,7 @@ class PlayState extends MusicBeatState
 		else
 			iconP2.animation.curAnim.curFrame = 0;
 
-		/* if (FlxG.keys.justPressed.NINE)
-			FlxG.switchState(new Charting()); */
-
-		#if debug
+		// #if debug
 		if (FlxG.keys.justPressed.ONE)
 			endSong();
 		if (FlxG.keys.justPressed.EIGHT)
@@ -2094,7 +2093,7 @@ class PlayState extends MusicBeatState
 			changeSection(1);
 		if (FlxG.keys.justPressed.PAGEDOWN)
 			changeSection(-1);
-		#end
+		// #end
 
 		if (generatedMusic && SONG.notes[Std.int(curStep / 16)] != null)
 		{
