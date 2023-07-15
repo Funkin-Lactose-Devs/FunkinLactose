@@ -509,10 +509,6 @@ class ChartingState extends MusicBeatState
 
 		if (curBeat % 4 == 0 && curStep >= 16 * (curSection + 1))
 		{
-			trace(curStep);
-			trace((_song.notes[curSection].lengthInSteps) * (curSection + 1));
-			trace('DUMBSHIT');
-
 			if (_song.notes[curSection + 1] == null)
 			{
 				addSection();
@@ -1000,9 +996,6 @@ class ChartingState extends MusicBeatState
 		{
 			_song.notes[curSection].sectionNotes.push([noteStrum, (noteData + 4) % 8, noteSus, noteAlt]);
 		}
-
-		trace(noteStrum);
-		trace(curSection);
 
 		updateGrid();
 		updateNoteUI();

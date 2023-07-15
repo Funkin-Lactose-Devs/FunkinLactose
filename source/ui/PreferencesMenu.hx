@@ -118,7 +118,7 @@ class PreferencesMenu extends ui.OptionsState.Page
 				createCheckbox(prefString);
 
 			default:
-				trace('swag');
+				trace("swag");
 		}
 
 		trace(Type.typeof(prefValue).getName());
