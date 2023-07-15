@@ -1,0 +1,33 @@
+# Funkin' Lactose Todo
+
+- [ ] Chart Editor Overhaul
+    - [ ] Fix bugs
+	- [ ] Events
+	- [ ] Notetypes
+	- [ ] Vortex Editor
+- [ ] Character Editor
+- [ ] Fix videos
+- [ ] State scripts & Global scripts
+- [ ] New modding system
+- [ ] Add note offset
+- [ ] Custom dialogue
+- [ ] Add credits
+- [ ] Verbose mode (`--verbose`)
+- [ ] Tooltips
+- [ ] Fix bugs
+- [ ] Minor LUA Support
+- [X] Botplay
+     - Fix bugs
+- [x] Middlescroll
+- [ ] Charter Waveforms
+- [ ] Custom classes
+	- [ ] Proper super overrides (FlxText_HSX doesn't allow overrides for update because of this)
+	- [ ] Custom Class extending Custom Classes
+	- [ ] Statics on Custom Classes
+	- [ ] Fix Bugs
+- [ ] Full 3D support via stages files
+- [ ] Multithread sprites loading (for faster load times)?
+- [ ] Stage Editor
+- [ ] Softcoded stages
+- [ ] Softcoded characters
+- [x] Softcoded weeks
