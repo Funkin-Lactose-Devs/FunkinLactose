@@ -258,15 +258,6 @@ class MainMenuState extends MusicBeatState
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
 		}
 
-		if (FlxG.keys.justPressed.SEVEN)
-			{
-				FlxG.switchState(new CutsceneAnimTestState());
-	
-				#if discord_rpc
-				DiscordClient.changePresence("Cutscene Animation Debug", null, null, true);
-				#end
-		}
-
 		if (_exiting)
 			menuItems.enabled = false;
 

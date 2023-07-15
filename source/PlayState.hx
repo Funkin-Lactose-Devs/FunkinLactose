@@ -2312,7 +2312,6 @@ class PlayState extends MusicBeatState
 		}
 	}
 
-	#if debug
 	function changeSection(sec:Int):Void
 	{
 		FlxG.sound.music.pause();
@@ -2331,7 +2330,6 @@ class PlayState extends MusicBeatState
 		updateCurStep();
 		resyncVocals();
 	}
-	#end
 
 	function endSong():Void
 	{
