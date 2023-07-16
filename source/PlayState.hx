@@ -2723,7 +2723,7 @@ class PlayState extends MusicBeatState
 		
 		if (!botplay){
 			// HOLDS, check for sustain notes
-			if (holdArray.contains(true) && !boyfriend.stunned && */ generatedMusic)
+			if (holdArray.contains(true) && !boyfriend.stunned && generatedMusic)
 			{
 				notes.forEachAlive(function(daNote:Note)
 				{
