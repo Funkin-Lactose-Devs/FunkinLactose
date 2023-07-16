@@ -125,6 +125,12 @@ class Paths
 		return file('$key.json',"weeks");
 	}
 
+	/* planned!
+	inline static public function dialogue(key:String)
+		{
+			return file('$key.json',"dialogue");
+		}*/
+
 	inline static public function script(key:String)
 	{
 		return file('$key',"scripts");
