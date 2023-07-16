@@ -1,5 +1,13 @@
 # Funkin' Lactose Todo
 
+- [z] Minor LUA Support
+- [x] Botplay
+     - [ ] Fix bugs
+- [x] Middlescroll
+- [z] Softcoded characters
+- [x] Softcoded weeks
+- [ ] Softcoded stages
+- [ ] New modding system 
 - [ ] Chart Editor Overhaul
     - [ ] Fix bugs
     - [ ] - Events
@@ -9,26 +17,21 @@
     - [ ] Utilize Google's Blocky like in Scratch
 - [ ] Fix videos
 - [ ] State scripts & Global scripts
-- [ ] New modding system
-- [ ] Add note offset
+- [ ] Add note offset 
 - [ ] Custom dialogue
-- [ ] Add credits
-- [ ] Verbose mode (`--verbose`)
+- [ ] Add credits 
+- [ ] Multiplayer
 - [ ] Tooltips
 - [ ] Fix bugs
-- [ ] Minor LUA Support
-- [X] Botplay
-     - [ ] Fix bugs
-- [x] Middlescroll
 - [ ] Charter Waveforms
 - [ ] Custom classes
      - [ ] Proper super overrides (FlxText_HSX doesn't allow overrides for update because of this)
      - [ ] Custom Class extending Custom Classes
      - [ ] Statics on Custom Classes
      - [ ] Fix Bugs
-- [ ] Full 3D support via stages files
+- [ ] Full 3D support via stages files (via Away3D)
 - [ ] Multithread sprites loading (for faster load times)?
 - [ ] Stage Editor
-- [ ] Softcoded stages
-- [ ] Softcoded characters
-- [x] Softcoded weeks
+(Useless but sure)
+- [ ] Spritesheet Spliter/Generator
+- [ ] Verbose mode (`--verbose`)

@@ -2161,7 +2161,7 @@ class PlayState extends MusicBeatState
 
 			if (health <= 0 && !practiceMode)
 			{
-				// boyfriend.stunned = true;
+				boyfriend.stunned = true;
 
 				dead = true;
 				persistentUpdate = false;
@@ -2723,7 +2723,7 @@ class PlayState extends MusicBeatState
 		
 		if (!botplay){
 			// HOLDS, check for sustain notes
-			if (holdArray.contains(true) && /*!boyfriend.stunned && */ generatedMusic)
+			if (holdArray.contains(true) && !boyfriend.stunned && */ generatedMusic)
 			{
 				notes.forEachAlive(function(daNote:Note)
 				{
@@ -2733,7 +2733,7 @@ class PlayState extends MusicBeatState
 			}
 		}else{
 			// HOLDS, check for sustain notes
-			if (/*!boyfriend.stunned && */ generatedMusic)
+			if (!boyfriend.stunned && generatedMusic)
 			{
 				notes.forEachAlive(function(daNote:Note)
 				{
@@ -2745,7 +2745,7 @@ class PlayState extends MusicBeatState
 
 		if (!botplay){
 			// PRESSES, check for note hits
-			if (pressArray.contains(true) && /*!boyfriend.stunned && */ generatedMusic)
+			if (pressArray.contains(true) && !boyfriend.stunned && generatedMusic)
 			{
 				boyfriend.holdTimer = 0;
 	
@@ -2935,7 +2935,7 @@ class PlayState extends MusicBeatState
 		vocals.volume = 0;
 		FlxG.sound.play(Paths.soundRandom('missnote', 1, 3), FlxG.random.float(0.1, 0.2));
 
-		/* boyfriend.stunned = true;
+		boyfriend.stunned = true;
 
 		// get stunned for 5 seconds
 		new FlxTimer().start(5 / 60, function(tmr:FlxTimer)

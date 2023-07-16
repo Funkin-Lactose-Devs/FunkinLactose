@@ -9,7 +9,7 @@ using StringTools;
 
 class Boyfriend extends Character
 {
-	// public var stunned:Bool = false;
+	public var stunned:Bool = false;
 
 	public function new(x:Float, y:Float, ?char:String = 'bf')
 	{
@@ -25,7 +25,7 @@ class Boyfriend extends Character
 			if (animation.curAnim.name.startsWith('sing'))
 			{
 				holdTimer += elapsed;
-				trace("holdTimer += "+elapsed);
+				// trace("holdTimer += "+elapsed);
 			}
 			else
 				holdTimer = 0;
