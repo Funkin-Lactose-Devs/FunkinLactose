@@ -18,8 +18,6 @@ labels: bug
 [weed]: <> (Put an X in the [ ] thingies to fill out checkbox!)
 [weed]: <> (something like [x] pretty much, don't screw up or you will look stupid)
 
-- [ ] [Newgrounds](https://www.newgrounds.com/portal/view/770371)
-- [ ] [Itch.io](https://ninja-muffin24.itch.io/funkin)? Specify below
 - - [ ] Windows
 - - [ ] Mac
 - - [ ] Linux
@@ -28,11 +26,11 @@ labels: bug
 
 [weed]: <> (Again, put an x in the [ ] box!)
 
-- [ ] Google Chrome (or chomium based like Brave, vivaldi, MS Edge)
+- [ ] Google Chrome (or chromium based like Brave, Opera GX, Vivaldi, MS Edge)
 - [ ] Firefox
 - [ ] Safari
 
-## What version of the game are you using? Look in the bottom left corner of the main menu. (ex: 0.2.7, 0.2.1, shit like that)
+## What version of the game are you using? Look in the bottom left corner of the main menu. (ex: 0.1.0, shit like that)
 
 
 ## Have you identified any steps to reproduce the bug? If so, please describe them below in as much detail as possible. Use images if possible.
