@@ -2941,7 +2941,7 @@ class PlayState extends MusicBeatState
 		new FlxTimer().start(5 / 60, function(tmr:FlxTimer)
 		{
 			boyfriend.stunned = false;
-		}); */
+		});
 
 		switch (direction)
 		{
