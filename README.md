@@ -4,6 +4,7 @@
 [Github](https://github.com/FunkinCrew/Funkin) | [itch.io](https://ninja-muffin24.itch.io/funkin) | [newgrounds](https://www.newgrounds.com/portal/view/770371)  
 
 IF YOU MAKE A MOD AND DISTRIBUTE A MODIFIED / RECOMPILED VERSION, YOU MUST OPEN SOURCE YOUR MOD AS WELL
+also i dont think i can get week 7 cutscenes workin'
 
 # Funkin' Lactose
 
