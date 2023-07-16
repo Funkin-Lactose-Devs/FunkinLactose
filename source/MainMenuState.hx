@@ -5,6 +5,8 @@ import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.FlxState;
+import flixel.math.FlxMath;
+import flixel.FlxCamera;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.effects.FlxFlicker;
 import flixel.graphics.frames.FlxAtlasFrames;
@@ -36,8 +38,11 @@ class MainMenuState extends MusicBeatState
 {
 	var menuItems:MainMenuList;
 
+	private var camGame:FlxCamera;
+
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
+	var camFollowPos:FlxObject;
 
 	override function create()
 	{
@@ -45,6 +50,11 @@ class MainMenuState extends MusicBeatState
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
 		#end
+
+		camGame = new FlxCamera();
+
+		FlxG.cameras.reset(camGame);
+		FlxCamera.defaultCameras = [camGame];
 
 		transIn = FlxTransitionableState.defaultTransIn;
 		transOut = FlxTransitionableState.defaultTransOut;
@@ -66,7 +76,9 @@ class MainMenuState extends MusicBeatState
 		add(bg);
 
 		camFollow = new FlxObject(0, 0, 1, 1);
+		camFollowPos = new FlxObject(0, 0, 1, 1);
 		add(camFollow);
+		add(camFollowPos);
 
 		magenta = new FlxSprite(Paths.image('menuDesat'));
 		magenta.scrollFactor.x = bg.scrollFactor.x;
@@ -251,7 +263,8 @@ class MainMenuState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-		// FlxG.camera.followLerp = CoolUtil.camLerpShit(0.06);
+		var lerpVal:Float = CoolUtil.boundTo(elapsed * 3.6, 0, 1);
+		camFollowPos.setPosition(FlxMath.lerp(camFollowPos.x, camFollow.x, lerpVal), FlxMath.lerp(camFollowPos.y, camFollow.y, lerpVal));
 
 		if (FlxG.sound.music.volume < 0.8)
 		{
