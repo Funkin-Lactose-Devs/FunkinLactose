@@ -159,6 +159,9 @@
 	<!--Enable the Flixel core recording system-->
 	<haxedef name="FLX_RECORD" />
 
+	<haxedef name="HXCPP_GC_BIG_BLOCKS"/>
+	<haxedef name="HXCPP_GC_MOVING"/>
+
 	<!--Disable the right and middle mouse buttons-->
 	<!-- <haxedef name="FLX_NO_MOUSE_ADVANCED" /> -->
 

@@ -3,6 +3,7 @@ package;
 import flixel.FlxG;
 import flixel.FlxGame;
 import flixel.FlxSprite;
+import flixel.text.FlxText;
 import flixel.addons.transition.FlxTransitionSprite.GraphicTransTileDiamond;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.addons.transition.TransitionData;
@@ -282,9 +283,8 @@ class TitleState extends MusicBeatState
 				{asset: diamond, width: 32, height: 32}, new FlxRect(-200, -200, FlxG.width * 1.4, FlxG.height * 1.4));
 		}
 		
-		if(FlxG.sound.music == null) {
+		if(FlxG.sound.music == null)
 			FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
-		}
 
 		Conductor.changeBPM(102);
 		persistentUpdate = true;
@@ -331,6 +331,11 @@ class TitleState extends MusicBeatState
 		titleText.updateHitbox();
 		// titleText.screenCenter(X);
 		add(titleText);
+
+		var engineversionText:FlxText = new FlxText(5, FlxG.height - 18, 0, "Funkin' Lactose ALPHA 0.1.0", 12);
+		engineversionText.scrollFactor.set();
+		engineversionText.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, LEFT);
+		add(engineversionText);
 
 		var logo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('logo'));
 		logo.screenCenter();

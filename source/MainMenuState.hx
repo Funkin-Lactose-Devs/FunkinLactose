@@ -105,7 +105,7 @@ class MainMenuState extends MusicBeatState
 		menuItems.enabled = false; // disable for intro
 		menuItems.createItem('story mode', function() startExitState(new StoryMenuState()));
 		menuItems.createItem('freeplay', function() startExitState(new FreeplayState()));
-		// addMenuItem('options', function () startExitState(new OptionMenu()));
+		menuItems.createItem('credits', function () startExitState(new CreditsState()));
 		#if CAN_OPEN_LINKS
 		var hasPopupBlocker = #if web true #else false #end;
 

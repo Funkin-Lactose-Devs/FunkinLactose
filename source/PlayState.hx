@@ -118,6 +118,8 @@ class PlayState extends MusicBeatState
 	private var generatedMusic:Bool = false;
 	private var startingSong:Bool = false;
 
+	private var botPlayState:FlxText;
+
 	private var iconP1:HealthIcon;
 	private var iconP2:HealthIcon;
 	private static var camHUD:FlxCamera;
@@ -925,6 +927,13 @@ class PlayState extends MusicBeatState
 		iconP2 = new HealthIcon(SONG.player2, false);
 		iconP2.y = healthBar.y - (iconP2.height / 2);
 		add(iconP2);
+
+		// hi kade
+		botPlayState = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 75, healthBarBG.y + (FlxG.save.data.downscroll ? 100 : -100), 0, "BOTPLAY", 20);
+		botPlayState.setFormat(Paths.font("vcr.ttf"), 42, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+		botPlayState.scrollFactor.set();
+		
+		if(botplay) add(botPlayState);
 
 		grpNoteSplashes.cameras = [camHUD];
 		strumLineNotes.cameras = [camHUD];
