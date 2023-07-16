@@ -208,7 +208,12 @@
 
 	<haxedef name="POLYMOD_SCRIPT_EXT" value=".hscript" />
 
-	<haxedef name="HXCPP_GC_BIG_BLOCKS" />
+	<haxedef name="no-deprecation-warnings" />
+
+		<!-- ______________________________ Haxe Flags _____________________________ -->
+
+	<!--No DCE is performed-->
+	<haxeflag name="-dce no" />
 
 	<!-- _________________________________ Custom _______________________________ -->
 
