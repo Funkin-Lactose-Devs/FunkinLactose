@@ -1,5 +1,6 @@
 package;
 
+// taken from chocolate engine (i love it but im lazy so i dont feel like actually writing a credits menu bruh)
 #if desktop
 import Discord.DiscordClient;
 #end
