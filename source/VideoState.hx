@@ -53,7 +53,7 @@ class VideoState extends MusicBeatState
 		FlxG.addChildBelowMouse(video);
 
 		#if hxCodec
-		video.playVideo(Paths.video('kickstarterTrailer.mp4').replace('videos:',''));
+		video.playVideo(Paths.video('kickstarterTrailer.mp4').replace('videos:', ''));
 		#else
 		var netConnection = new NetConnection();
 		netConnection.connect(null);
