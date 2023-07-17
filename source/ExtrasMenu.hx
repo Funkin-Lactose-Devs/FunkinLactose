@@ -66,78 +66,65 @@ class ExtrasMenu extends MusicBeatState
 					FlxG.switchState(new CreditsState());
 				case 1:
 					FlxG.openURL("https://discord.gg/btYtsZwf8N");
-                #if CAN_OPEN_LINKS
-                case 2:
-                    MainMenuState.selectDonate();
-                #end
+				#if CAN_OPEN_LINKS
+				case 2:
+					MainMenuState.selectDonate();
+				#end
 			}
 			//	var funnystring = Std.string(curSelected);
 			//	FlxG.openURL(funnystring);
 		}
 
-		if (isSettingControl)
-			waitingInput();
-		else
+		if (controls.BACK && canSelect)
+			FlxG.switchState(new MainMenuState());
+		if (controls.UI_UP_P && canSelect)
+			changeSelection(-1);
+		if (controls.UI_DOWN_P && canSelect)
+			changeSelection(1);
+	}
+
+	var isSettingControl:Bool = false;
+
+	function changeBinding():Void
+	{
+		if (!isSettingControl)
 		{
-			if (controls.BACK && canSelect)
-				FlxG.switchState(new MainMenuState());
-			if (controls.UI_UP_P && canSelect)
-				changeSelection(-1);
-			if (controls.UI_DOWN_P && canSelect)
-				changeSelection(1);
+			isSettingControl = true;
 		}
-		} function waitingInput():Void
+	}
 
+	function changeSelection(change:Int = 0)
+	{
+		//		#if !switch
+		// NGio.logEvent('Fresh');
+		//		#end
+
+		FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
+
+		curSelected += change;
+
+		if (curSelected < 0)
+			curSelected = grpControls.length - 1;
+		if (curSelected >= grpControls.length)
+			curSelected = 0;
+
+		// selector.y = (70 * curSelected) + 30;
+
+		var bullShit:Int = 0;
+
+		for (item in grpControls.members)
 		{
-			if (FlxG.keys.getIsDown().length > 0)
+			item.targetY = bullShit - curSelected;
+			bullShit++;
+
+			item.alpha = 0.6;
+			// item.setGraphicSize(Std.int(item.width * 0.8));
+
+			if (item.targetY == 0)
 			{
-				PlayerSettings.player1.controls.replaceBinding(Control.UI_LEFT, Keys, FlxG.keys.getIsDown()[0].ID, null);
-			}
-			// PlayerSettings.player1.controls.replaceBinding(Control)
-		}
-
-		var isSettingControl:Bool = false;
-
-		function changeBinding():Void
-		{
-			if (!isSettingControl)
-			{
-				isSettingControl = true;
-			}
-		}
-
-		function changeSelection(change:Int = 0)
-		{
-			//		#if !switch
-			// NGio.logEvent('Fresh');
-			//		#end
-
-			FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
-
-			curSelected += change;
-
-			if (curSelected < 0)
-				curSelected = grpControls.length - 1;
-			if (curSelected >= grpControls.length)
-				curSelected = 0;
-
-			// selector.y = (70 * curSelected) + 30;
-
-			var bullShit:Int = 0;
-
-			for (item in grpControls.members)
-			{
-				item.targetY = bullShit - curSelected;
-				bullShit++;
-
-				item.alpha = 0.6;
-				// item.setGraphicSize(Std.int(item.width * 0.8));
-
-				if (item.targetY == 0)
-				{
-					item.alpha = 1;
-					// item.setGraphicSize(Std.int(item.width));
-				}
+				item.alpha = 1;
+				// item.setGraphicSize(Std.int(item.width));
 			}
 		}
-		}
+	}
+}
