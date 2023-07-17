@@ -2,92 +2,104 @@
 <TextureAtlas imagePath="main_menu.png">
 	<!-- Created using the Spritesheet and XML generator -->
 	<!-- https://uncertainprod.github.io/FNF-Spritesheet-XML-generator-Web -->
-	<SubTexture name="kickstarter selected0000" x="0" y="0" width="854" height="232" frameX="5" frameY="8" frameWidth="841" frameHeight="216"/>
-	<SubTexture name="kickstarter selected0001" x="0" y="232" width="852" height="232" frameX="8" frameY="8" frameWidth="841" frameHeight="216"/>
-	<SubTexture name="kickstarter selected0002" x="0" y="464" width="849" height="223" frameX="6" frameY="2" frameWidth="841" frameHeight="216"/>
-	<SubTexture name="donate idle 0000" x="2267" y="266" width="460" height="133" frameX="8" frameY="8" frameWidth="444" frameHeight="117"/>
-	<SubTexture name="donate idle 0001" x="2267" y="266" width="460" height="133" frameX="8" frameY="8" frameWidth="444" frameHeight="117"/>
-	<SubTexture name="donate idle 0002" x="2267" y="266" width="460" height="133" frameX="8" frameY="8" frameWidth="444" frameHeight="117"/>
-	<SubTexture name="donate idle 0003" x="2267" y="0" width="460" height="133" frameX="8" frameY="8" frameWidth="444" frameHeight="117"/>
-	<SubTexture name="donate idle 0004" x="2267" y="0" width="460" height="133" frameX="8" frameY="8" frameWidth="444" frameHeight="117"/>
-	<SubTexture name="donate idle 0005" x="2267" y="0" width="460" height="133" frameX="8" frameY="8" frameWidth="444" frameHeight="117"/>
-	<SubTexture name="donate idle 0006" x="2267" y="133" width="460" height="133" frameX="8" frameY="8" frameWidth="444" frameHeight="117"/>
-	<SubTexture name="donate idle 0007" x="2267" y="133" width="460" height="133" frameX="8" frameY="8" frameWidth="444" frameHeight="117"/>
-	<SubTexture name="donate idle 0008" x="2267" y="133" width="460" height="133" frameX="8" frameY="8" frameWidth="444" frameHeight="117"/>
-	<SubTexture name="donate selected 0000" x="0" y="1447" width="606" height="173" frameX="8" frameY="6" frameWidth="590" frameHeight="159"/>
-	<SubTexture name="donate selected 0001" x="1664" y="0" width="603" height="170" frameX="7" frameY="3" frameWidth="590" frameHeight="159"/>
-	<SubTexture name="donate selected 0002" x="606" y="1447" width="601" height="171" frameX="5" frameY="8" frameWidth="590" frameHeight="159"/>
-	<SubTexture name="freeplay idle 0000" x="0" y="2080" width="500" height="138" frameX="8" frameY="8" frameWidth="484" frameHeight="122"/>
-	<SubTexture name="freeplay idle 0001" x="0" y="2080" width="500" height="138" frameX="8" frameY="8" frameWidth="484" frameHeight="122"/>
-	<SubTexture name="freeplay idle 0002" x="0" y="2080" width="500" height="138" frameX="8" frameY="8" frameWidth="484" frameHeight="122"/>
-	<SubTexture name="freeplay idle 0003" x="1014" y="1919" width="500" height="138" frameX="8" frameY="8" frameWidth="484" frameHeight="122"/>
-	<SubTexture name="freeplay idle 0004" x="1014" y="1919" width="500" height="138" frameX="8" frameY="8" frameWidth="484" frameHeight="122"/>
-	<SubTexture name="freeplay idle 0005" x="1014" y="1919" width="500" height="138" frameX="8" frameY="8" frameWidth="484" frameHeight="122"/>
-	<SubTexture name="freeplay idle 0006" x="1514" y="1919" width="500" height="138" frameX="8" frameY="8" frameWidth="484" frameHeight="122"/>
-	<SubTexture name="freeplay idle 0007" x="1514" y="1919" width="500" height="138" frameX="8" frameY="8" frameWidth="484" frameHeight="122"/>
-	<SubTexture name="freeplay idle0000" x="1514" y="1919" width="500" height="138" frameX="8" frameY="8" frameWidth="484" frameHeight="122"/>
-	<SubTexture name="freeplay selected 0000" x="609" y="876" width="643" height="185" frameX="8" frameY="8" frameWidth="635" frameHeight="174"/>
-	<SubTexture name="freeplay selected 0001" x="812" y="687" width="648" height="186" frameX="5" frameY="7" frameWidth="635" frameHeight="174"/>
-	<SubTexture name="freeplay selected 0002" x="854" y="387" width="645" height="189" frameX="4" frameY="7" frameWidth="635" frameHeight="174"/>
-	<SubTexture name="kickstarter idle 0000" x="1664" y="595" width="574" height="155" frameX="8" frameY="8" frameWidth="558" frameHeight="139"/>
-	<SubTexture name="kickstarter idle 0001" x="1664" y="595" width="574" height="155" frameX="8" frameY="8" frameWidth="558" frameHeight="139"/>
-	<SubTexture name="kickstarter idle 0002" x="1664" y="595" width="574" height="155" frameX="8" frameY="8" frameWidth="558" frameHeight="139"/>
-	<SubTexture name="kickstarter idle 0003" x="1664" y="905" width="574" height="155" frameX="8" frameY="8" frameWidth="558" frameHeight="139"/>
-	<SubTexture name="kickstarter idle 0004" x="1664" y="905" width="574" height="155" frameX="8" frameY="8" frameWidth="558" frameHeight="139"/>
-	<SubTexture name="kickstarter idle 0005" x="1664" y="905" width="574" height="155" frameX="8" frameY="8" frameWidth="558" frameHeight="139"/>
-	<SubTexture name="kickstarter idle 0006" x="1664" y="750" width="574" height="155" frameX="8" frameY="8" frameWidth="558" frameHeight="139"/>
-	<SubTexture name="kickstarter idle 0007" x="1664" y="750" width="574" height="155" frameX="8" frameY="8" frameWidth="558" frameHeight="139"/>
-	<SubTexture name="kickstarter idle 0008" x="1664" y="750" width="574" height="155" frameX="8" frameY="8" frameWidth="558" frameHeight="139"/>
-	<SubTexture name="options idle0000" x="1003" y="2080" width="503" height="127" frameX="8" frameY="8" frameWidth="487" frameHeight="111"/>
-	<SubTexture name="options idle0001" x="1003" y="2080" width="503" height="127" frameX="8" frameY="8" frameWidth="487" frameHeight="111"/>
-	<SubTexture name="options idle0002" x="1003" y="2080" width="503" height="127" frameX="8" frameY="8" frameWidth="487" frameHeight="111"/>
-	<SubTexture name="options idle0003" x="500" y="2080" width="503" height="127" frameX="8" frameY="8" frameWidth="487" frameHeight="111"/>
-	<SubTexture name="options idle0004" x="500" y="2080" width="503" height="127" frameX="8" frameY="8" frameWidth="487" frameHeight="111"/>
-	<SubTexture name="options idle0005" x="500" y="2080" width="503" height="127" frameX="8" frameY="8" frameWidth="487" frameHeight="111"/>
-	<SubTexture name="options idle0006" x="1506" y="2080" width="503" height="127" frameX="8" frameY="8" frameWidth="487" frameHeight="111"/>
-	<SubTexture name="options idle0007" x="1506" y="2080" width="503" height="127" frameX="8" frameY="8" frameWidth="487" frameHeight="111"/>
-	<SubTexture name="options idle0008" x="1506" y="2080" width="503" height="127" frameX="8" frameY="8" frameWidth="487" frameHeight="111"/>
-	<SubTexture name="options selected 0000" x="623" y="1273" width="622" height="171" frameX="6" frameY="7" frameWidth="610" frameHeight="163"/>
-	<SubTexture name="options selected 0001" x="0" y="1273" width="623" height="174" frameX="5" frameY="7" frameWidth="610" frameHeight="163"/>
-	<SubTexture name="options selected 0002" x="594" y="1075" width="626" height="179" frameX="8" frameY="8" frameWidth="610" frameHeight="163"/>
-	<SubTexture name="story mode idle0000" x="0" y="1620" width="631" height="138" frameX="8" frameY="8" frameWidth="615" frameHeight="122"/>
-	<SubTexture name="story mode idle0001" x="0" y="1620" width="631" height="138" frameX="8" frameY="8" frameWidth="615" frameHeight="122"/>
-	<SubTexture name="story mode idle0002" x="0" y="1620" width="631" height="138" frameX="8" frameY="8" frameWidth="615" frameHeight="122"/>
-	<SubTexture name="story mode idle0003" x="1262" y="1620" width="631" height="138" frameX="8" frameY="8" frameWidth="615" frameHeight="122"/>
-	<SubTexture name="story mode idle0004" x="1262" y="1620" width="631" height="138" frameX="8" frameY="8" frameWidth="615" frameHeight="122"/>
-	<SubTexture name="story mode idle0005" x="1262" y="1620" width="631" height="138" frameX="8" frameY="8" frameWidth="615" frameHeight="122"/>
-	<SubTexture name="story mode idle0006" x="631" y="1620" width="631" height="138" frameX="8" frameY="8" frameWidth="615" frameHeight="122"/>
-	<SubTexture name="story mode idle0007" x="631" y="1620" width="631" height="138" frameX="8" frameY="8" frameWidth="615" frameHeight="122"/>
-	<SubTexture name="story mode idle0008" x="631" y="1620" width="631" height="138" frameX="8" frameY="8" frameWidth="615" frameHeight="122"/>
-	<SubTexture name="story mode selected0000" x="0" y="687" width="812" height="189" frameX="8" frameY="5" frameWidth="796" frameHeight="181"/>
-	<SubTexture name="story mode selected0001" x="854" y="197" width="810" height="190" frameX="6" frameY="6" frameWidth="796" frameHeight="181"/>
-	<SubTexture name="story mode selected0002" x="854" y="0" width="810" height="197" frameX="8" frameY="8" frameWidth="796" frameHeight="181"/>
-	<SubTexture name="credits idle0000" x="0" y="1758" width="507" height="161" frameX="8" frameY="8" frameWidth="487" frameHeight="141"/>
-	<SubTexture name="credits idle0001" x="1664" y="1382" width="507" height="161" frameX="8" frameY="8" frameWidth="487" frameHeight="141"/>
-	<SubTexture name="credits idle0002" x="507" y="1758" width="507" height="161" frameX="8" frameY="8" frameWidth="487" frameHeight="141"/>
-	<SubTexture name="credits idle0003" x="1664" y="1060" width="507" height="161" frameX="8" frameY="8" frameWidth="487" frameHeight="141"/>
-	<SubTexture name="credits idle0004" x="1014" y="1758" width="507" height="161" frameX="8" frameY="8" frameWidth="487" frameHeight="141"/>
-	<SubTexture name="credits idle0005" x="1521" y="1758" width="507" height="161" frameX="8" frameY="8" frameWidth="487" frameHeight="141"/>
-	<SubTexture name="credits idle0006" x="1664" y="1221" width="507" height="161" frameX="8" frameY="8" frameWidth="487" frameHeight="141"/>
-	<SubTexture name="credits idle0007" x="0" y="1919" width="507" height="161" frameX="8" frameY="8" frameWidth="487" frameHeight="141"/>
-	<SubTexture name="credits idle0008" x="507" y="1919" width="507" height="160" frameX="8" frameY="8" frameWidth="487" frameHeight="141"/>
-	<SubTexture name="credits selected0000" x="0" y="1075" width="594" height="198" frameX="1" frameY="7" frameWidth="589" frameHeight="179"/>
-	<SubTexture name="credits selected0001" x="0" y="876" width="609" height="199" frameX="8" frameY="8" frameWidth="589" frameHeight="179"/>
-	<SubTexture name="mods idle0000" x="2267" y="538" width="336" height="139" frameX="8" frameY="8" frameWidth="316" frameHeight="119"/>
-	<SubTexture name="mods idle0001" x="2267" y="538" width="336" height="139" frameX="8" frameY="8" frameWidth="316" frameHeight="119"/>
-	<SubTexture name="mods idle0002" x="2267" y="538" width="336" height="139" frameX="8" frameY="8" frameWidth="316" frameHeight="119"/>
-	<SubTexture name="mods idle0003" x="2267" y="538" width="336" height="139" frameX="8" frameY="8" frameWidth="316" frameHeight="119"/>
-	<SubTexture name="mods idle0004" x="2267" y="399" width="336" height="139" frameX="8" frameY="8" frameWidth="316" frameHeight="119"/>
-	<SubTexture name="mods idle0005" x="2267" y="399" width="336" height="139" frameX="8" frameY="8" frameWidth="316" frameHeight="119"/>
-	<SubTexture name="mods idle0006" x="2267" y="399" width="336" height="139" frameX="8" frameY="8" frameWidth="316" frameHeight="119"/>
-	<SubTexture name="mods idle0007" x="2267" y="677" width="336" height="139" frameX="8" frameY="8" frameWidth="316" frameHeight="119"/>
-	<SubTexture name="mods idle0008" x="2267" y="677" width="336" height="139" frameX="8" frameY="8" frameWidth="316" frameHeight="119"/>
-	<SubTexture name="mods idle0009" x="2267" y="677" width="336" height="139" frameX="8" frameY="8" frameWidth="316" frameHeight="119"/>
-	<SubTexture name="mods idle0010" x="2267" y="677" width="336" height="139" frameX="8" frameY="8" frameWidth="316" frameHeight="119"/>
-	<SubTexture name="mods idle0011" x="2267" y="538" width="336" height="139" frameX="8" frameY="8" frameWidth="316" frameHeight="119"/>
-	<SubTexture name="mods idle0012" x="2267" y="538" width="336" height="139" frameX="8" frameY="8" frameWidth="316" frameHeight="119"/>
-	<SubTexture name="mods idle0013" x="2267" y="538" width="336" height="139" frameX="8" frameY="8" frameWidth="316" frameHeight="119"/>
-	<SubTexture name="mods idle0014" x="2267" y="538" width="336" height="139" frameX="8" frameY="8" frameWidth="316" frameHeight="119"/>
-	<SubTexture name="mods selected0000" x="1664" y="385" width="444" height="210" frameX="1" frameY="3" frameWidth="431" frameHeight="195"/>
-	<SubTexture name="mods selected0001" x="1664" y="170" width="451" height="215" frameX="8" frameY="8" frameWidth="431" frameHeight="195"/>
+	<SubTexture name="kickstarter selected0000" x="0" y="0" width="888" height="266" frameX="22" frameY="25" frameWidth="841" frameHeight="216"/>
+	<SubTexture name="kickstarter selected0001" x="0" y="266" width="886" height="265" frameX="25" frameY="25" frameWidth="841" frameHeight="216"/>
+	<SubTexture name="kickstarter selected0002" x="0" y="531" width="883" height="256" frameX="23" frameY="19" frameWidth="841" frameHeight="216"/>
+	<SubTexture name="donate idle 0000" x="2371" y="1922" width="494" height="167" frameX="25" frameY="25" frameWidth="444" frameHeight="117"/>
+	<SubTexture name="donate idle 0001" x="2371" y="1922" width="494" height="167" frameX="25" frameY="25" frameWidth="444" frameHeight="117"/>
+	<SubTexture name="donate idle 0002" x="2371" y="1922" width="494" height="167" frameX="25" frameY="25" frameWidth="444" frameHeight="117"/>
+	<SubTexture name="donate idle 0003" x="2371" y="2089" width="494" height="167" frameX="25" frameY="25" frameWidth="444" frameHeight="117"/>
+	<SubTexture name="donate idle 0004" x="2371" y="2089" width="494" height="167" frameX="25" frameY="25" frameWidth="444" frameHeight="117"/>
+	<SubTexture name="donate idle 0005" x="2371" y="2089" width="494" height="167" frameX="25" frameY="25" frameWidth="444" frameHeight="117"/>
+	<SubTexture name="donate idle 0006" x="2371" y="1755" width="494" height="167" frameX="25" frameY="25" frameWidth="444" frameHeight="117"/>
+	<SubTexture name="donate idle 0007" x="2371" y="1755" width="494" height="167" frameX="25" frameY="25" frameWidth="444" frameHeight="117"/>
+	<SubTexture name="donate idle 0008" x="2371" y="1755" width="494" height="167" frameX="25" frameY="25" frameWidth="444" frameHeight="117"/>
+	<SubTexture name="donate selected 0000" x="1732" y="0" width="639" height="207" frameX="25" frameY="23" frameWidth="590" frameHeight="159"/>
+	<SubTexture name="donate selected 0001" x="1732" y="207" width="637" height="204" frameX="24" frameY="20" frameWidth="590" frameHeight="159"/>
+	<SubTexture name="donate selected 0002" x="1732" y="411" width="635" height="204" frameX="22" frameY="25" frameWidth="590" frameHeight="159"/>
+	<SubTexture name="freeplay idle 0000" x="2371" y="362" width="534" height="172" frameX="25" frameY="25" frameWidth="484" frameHeight="122"/>
+	<SubTexture name="freeplay idle 0001" x="2371" y="362" width="534" height="172" frameX="25" frameY="25" frameWidth="484" frameHeight="122"/>
+	<SubTexture name="freeplay idle 0002" x="2371" y="362" width="534" height="172" frameX="25" frameY="25" frameWidth="484" frameHeight="122"/>
+	<SubTexture name="freeplay idle 0003" x="2371" y="534" width="534" height="172" frameX="25" frameY="25" frameWidth="484" frameHeight="122"/>
+	<SubTexture name="freeplay idle 0004" x="2371" y="534" width="534" height="172" frameX="25" frameY="25" frameWidth="484" frameHeight="122"/>
+	<SubTexture name="freeplay idle 0005" x="2371" y="534" width="534" height="172" frameX="25" frameY="25" frameWidth="484" frameHeight="122"/>
+	<SubTexture name="freeplay idle 0006" x="2371" y="190" width="534" height="172" frameX="25" frameY="25" frameWidth="484" frameHeight="122"/>
+	<SubTexture name="freeplay idle 0007" x="2371" y="190" width="534" height="172" frameX="25" frameY="25" frameWidth="484" frameHeight="122"/>
+	<SubTexture name="freeplay idle0000" x="2371" y="190" width="534" height="172" frameX="25" frameY="25" frameWidth="484" frameHeight="122"/>
+	<SubTexture name="freeplay selected 0000" x="0" y="1010" width="677" height="218" frameX="25" frameY="25" frameWidth="635" frameHeight="174"/>
+	<SubTexture name="freeplay selected 0001" x="846" y="787" width="682" height="220" frameX="22" frameY="24" frameWidth="635" frameHeight="174"/>
+	<SubTexture name="freeplay selected 0002" x="888" y="455" width="678" height="223" frameX="21" frameY="24" frameWidth="635" frameHeight="174"/>
+	<SubTexture name="kickstarter idle 0000" x="1732" y="860" width="608" height="189" frameX="25" frameY="25" frameWidth="558" frameHeight="139"/>
+	<SubTexture name="kickstarter idle 0001" x="1732" y="860" width="608" height="189" frameX="25" frameY="25" frameWidth="558" frameHeight="139"/>
+	<SubTexture name="kickstarter idle 0002" x="1732" y="860" width="608" height="189" frameX="25" frameY="25" frameWidth="558" frameHeight="139"/>
+	<SubTexture name="kickstarter idle 0003" x="1732" y="1049" width="608" height="189" frameX="25" frameY="25" frameWidth="558" frameHeight="139"/>
+	<SubTexture name="kickstarter idle 0004" x="1732" y="1049" width="608" height="189" frameX="25" frameY="25" frameWidth="558" frameHeight="139"/>
+	<SubTexture name="kickstarter idle 0005" x="1732" y="1049" width="608" height="189" frameX="25" frameY="25" frameWidth="558" frameHeight="139"/>
+	<SubTexture name="kickstarter idle 0006" x="1732" y="1238" width="608" height="189" frameX="25" frameY="25" frameWidth="558" frameHeight="139"/>
+	<SubTexture name="kickstarter idle 0007" x="1732" y="1238" width="608" height="189" frameX="25" frameY="25" frameWidth="558" frameHeight="139"/>
+	<SubTexture name="kickstarter idle 0008" x="1732" y="1238" width="608" height="189" frameX="25" frameY="25" frameWidth="558" frameHeight="139"/>
+	<SubTexture name="options idle0000" x="2371" y="1222" width="537" height="161" frameX="25" frameY="25" frameWidth="487" frameHeight="111"/>
+	<SubTexture name="options idle0001" x="2371" y="1222" width="537" height="161" frameX="25" frameY="25" frameWidth="487" frameHeight="111"/>
+	<SubTexture name="options idle0002" x="2371" y="1222" width="537" height="161" frameX="25" frameY="25" frameWidth="487" frameHeight="111"/>
+	<SubTexture name="options idle0003" x="2371" y="1061" width="537" height="161" frameX="25" frameY="25" frameWidth="487" frameHeight="111"/>
+	<SubTexture name="options idle0004" x="2371" y="1061" width="537" height="161" frameX="25" frameY="25" frameWidth="487" frameHeight="111"/>
+	<SubTexture name="options idle0005" x="2371" y="1061" width="537" height="161" frameX="25" frameY="25" frameWidth="487" frameHeight="111"/>
+	<SubTexture name="options idle0006" x="2371" y="900" width="537" height="161" frameX="25" frameY="25" frameWidth="487" frameHeight="111"/>
+	<SubTexture name="options idle0007" x="2371" y="900" width="537" height="161" frameX="25" frameY="25" frameWidth="487" frameHeight="111"/>
+	<SubTexture name="options idle0008" x="2371" y="900" width="537" height="161" frameX="25" frameY="25" frameWidth="487" frameHeight="111"/>
+	<SubTexture name="options selected 0000" x="657" y="1457" width="656" height="205" frameX="23" frameY="24" frameWidth="610" frameHeight="163"/>
+	<SubTexture name="options selected 0001" x="0" y="1457" width="657" height="208" frameX="22" frameY="24" frameWidth="610" frameHeight="163"/>
+	<SubTexture name="options selected 0002" x="677" y="1010" width="660" height="213" frameX="25" frameY="25" frameWidth="610" frameHeight="163"/>
+	<SubTexture name="story mode idle0000" x="1330" y="1665" width="665" height="172" frameX="25" frameY="25" frameWidth="615" frameHeight="122"/>
+	<SubTexture name="story mode idle0001" x="1330" y="1665" width="665" height="172" frameX="25" frameY="25" frameWidth="615" frameHeight="122"/>
+	<SubTexture name="story mode idle0002" x="1330" y="1665" width="665" height="172" frameX="25" frameY="25" frameWidth="615" frameHeight="122"/>
+	<SubTexture name="story mode idle0003" x="0" y="1665" width="665" height="172" frameX="25" frameY="25" frameWidth="615" frameHeight="122"/>
+	<SubTexture name="story mode idle0004" x="0" y="1665" width="665" height="172" frameX="25" frameY="25" frameWidth="615" frameHeight="122"/>
+	<SubTexture name="story mode idle0005" x="0" y="1665" width="665" height="172" frameX="25" frameY="25" frameWidth="615" frameHeight="122"/>
+	<SubTexture name="story mode idle0006" x="665" y="1665" width="665" height="172" frameX="25" frameY="25" frameWidth="615" frameHeight="122"/>
+	<SubTexture name="story mode idle0007" x="665" y="1665" width="665" height="172" frameX="25" frameY="25" frameWidth="615" frameHeight="122"/>
+	<SubTexture name="story mode idle0008" x="665" y="1665" width="665" height="172" frameX="25" frameY="25" frameWidth="615" frameHeight="122"/>
+	<SubTexture name="story mode selected0000" x="0" y="787" width="846" height="223" frameX="25" frameY="22" frameWidth="796" frameHeight="181"/>
+	<SubTexture name="story mode selected0001" x="888" y="231" width="844" height="224" frameX="23" frameY="23" frameWidth="796" frameHeight="181"/>
+	<SubTexture name="story mode selected0002" x="888" y="0" width="844" height="231" frameX="25" frameY="25" frameWidth="796" frameHeight="181"/>
+	<SubTexture name="credits idle0000" x="474" y="1837" width="537" height="191" frameX="23" frameY="23" frameWidth="487" frameHeight="141"/>
+	<SubTexture name="credits idle0001" x="537" y="2077" width="537" height="191" frameX="23" frameY="23" frameWidth="487" frameHeight="141"/>
+	<SubTexture name="credits idle0002" x="1732" y="1427" width="537" height="191" frameX="23" frameY="23" frameWidth="487" frameHeight="141"/>
+	<SubTexture name="credits idle0003" x="1011" y="1837" width="537" height="191" frameX="23" frameY="23" frameWidth="487" frameHeight="141"/>
+	<SubTexture name="credits idle0004" x="1611" y="2077" width="537" height="191" frameX="23" frameY="23" frameWidth="487" frameHeight="141"/>
+	<SubTexture name="credits idle0005" x="0" y="2077" width="537" height="191" frameX="23" frameY="23" frameWidth="487" frameHeight="141"/>
+	<SubTexture name="credits idle0006" x="1074" y="2077" width="537" height="191" frameX="23" frameY="23" frameWidth="487" frameHeight="141"/>
+	<SubTexture name="credits idle0007" x="1548" y="1837" width="537" height="191" frameX="23" frameY="23" frameWidth="487" frameHeight="141"/>
+	<SubTexture name="credits idle0008" x="2371" y="0" width="537" height="190" frameX="23" frameY="23" frameWidth="487" frameHeight="141"/>
+	<SubTexture name="credits selected0000" x="639" y="1228" width="624" height="228" frameX="16" frameY="22" frameWidth="589" frameHeight="179"/>
+	<SubTexture name="credits selected0001" x="0" y="1228" width="639" height="229" frameX="23" frameY="23" frameWidth="589" frameHeight="179"/>
+	<SubTexture name="mods idle0000" x="1995" y="1665" width="366" height="169" frameX="23" frameY="23" frameWidth="316" frameHeight="119"/>
+	<SubTexture name="mods idle0001" x="1995" y="1665" width="366" height="169" frameX="23" frameY="23" frameWidth="316" frameHeight="119"/>
+	<SubTexture name="mods idle0002" x="1995" y="1665" width="366" height="169" frameX="23" frameY="23" frameWidth="316" frameHeight="119"/>
+	<SubTexture name="mods idle0003" x="1995" y="1665" width="366" height="169" frameX="23" frameY="23" frameWidth="316" frameHeight="119"/>
+	<SubTexture name="mods idle0004" x="1337" y="1010" width="366" height="169" frameX="23" frameY="23" frameWidth="316" frameHeight="119"/>
+	<SubTexture name="mods idle0005" x="1337" y="1010" width="366" height="169" frameX="23" frameY="23" frameWidth="316" frameHeight="119"/>
+	<SubTexture name="mods idle0006" x="1337" y="1010" width="366" height="169" frameX="23" frameY="23" frameWidth="316" frameHeight="119"/>
+	<SubTexture name="mods idle0007" x="404" y="2268" width="366" height="169" frameX="23" frameY="23" frameWidth="316" frameHeight="119"/>
+	<SubTexture name="mods idle0008" x="404" y="2268" width="366" height="169" frameX="23" frameY="23" frameWidth="316" frameHeight="119"/>
+	<SubTexture name="mods idle0009" x="404" y="2268" width="366" height="169" frameX="23" frameY="23" frameWidth="316" frameHeight="119"/>
+	<SubTexture name="mods idle0010" x="404" y="2268" width="366" height="169" frameX="23" frameY="23" frameWidth="316" frameHeight="119"/>
+	<SubTexture name="mods idle0011" x="1995" y="1665" width="366" height="169" frameX="23" frameY="23" frameWidth="316" frameHeight="119"/>
+	<SubTexture name="mods idle0012" x="1995" y="1665" width="366" height="169" frameX="23" frameY="23" frameWidth="316" frameHeight="119"/>
+	<SubTexture name="mods idle0013" x="1995" y="1665" width="366" height="169" frameX="23" frameY="23" frameWidth="316" frameHeight="119"/>
+	<SubTexture name="mods idle0014" x="1995" y="1665" width="366" height="169" frameX="23" frameY="23" frameWidth="316" frameHeight="119"/>
+	<SubTexture name="mods selected0000" x="0" y="1837" width="474" height="240" frameX="16" frameY="18" frameWidth="431" frameHeight="195"/>
+	<SubTexture name="mods selected0001" x="1732" y="615" width="481" height="245" frameX="23" frameY="23" frameWidth="431" frameHeight="195"/>
+	<SubTexture name="extras idle0000" x="0" y="2268" width="404" height="170" frameX="25" frameY="25" frameWidth="354" frameHeight="120"/>
+	<SubTexture name="extras idle0001" x="0" y="2268" width="404" height="170" frameX="25" frameY="25" frameWidth="354" frameHeight="120"/>
+	<SubTexture name="extras idle0002" x="0" y="2268" width="404" height="170" frameX="25" frameY="25" frameWidth="354" frameHeight="120"/>
+	<SubTexture name="extras idle0003" x="1263" y="1228" width="404" height="170" frameX="25" frameY="25" frameWidth="354" frameHeight="120"/>
+	<SubTexture name="extras idle0004" x="1263" y="1228" width="404" height="170" frameX="25" frameY="25" frameWidth="354" frameHeight="120"/>
+	<SubTexture name="extras idle0005" x="1263" y="1228" width="404" height="170" frameX="25" frameY="25" frameWidth="354" frameHeight="120"/>
+	<SubTexture name="extras idle0006" x="1313" y="1457" width="404" height="170" frameX="25" frameY="25" frameWidth="354" frameHeight="120"/>
+	<SubTexture name="extras idle0007" x="1313" y="1457" width="404" height="170" frameX="25" frameY="25" frameWidth="354" frameHeight="120"/>
+	<SubTexture name="extras idle0008" x="1313" y="1457" width="404" height="170" frameX="25" frameY="25" frameWidth="354" frameHeight="120"/>
+	<SubTexture name="extras selected0000" x="2371" y="1569" width="460" height="186" frameX="25" frameY="25" frameWidth="402" frameHeight="136"/>
+	<SubTexture name="extras selected0001" x="2371" y="1383" width="460" height="186" frameX="25" frameY="25" frameWidth="402" frameHeight="136"/>
+	<SubTexture name="extras selected0002" x="2371" y="706" width="460" height="194" frameX="25" frameY="25" frameWidth="402" frameHeight="136"/>
 </TextureAtlas>
