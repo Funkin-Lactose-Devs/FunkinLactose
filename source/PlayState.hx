@@ -49,7 +49,6 @@ import shaderslmfao.ColorSwap;
 import ui.PreferencesMenu;
 import StrumNote;
 import Rating;
-
 #if hxCodec
 import hxcodec.VideoHandler;
 #end
@@ -59,104 +58,102 @@ using StringTools;
 #if discord_rpc
 import Discord.DiscordClient;
 #end
-
 #if desktop
 import lime.app.Application;
 #end
-
 #if linc_luajit
 import LuaHandler;
 #end
 
-// stop making mods about 
+// stop making mods about
 /* ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⠤⠤⠤⡤⠤⠤⠄⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣴⡞⢫⠔⢊⢁⢂⠐⠤⢈⠉⡙⠿⣲⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⣾⠓⡉⠐⠤⠈⡄⠂⡄⢊⠐⡠⠡⢐⠨⢈⠙⠾⣳⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⣀⡴⣖⠳⡳⣤⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣞⠏⣈⠡⠐⡉⠄⡡⠠⠡⠐⢂⠡⠠⢁⢂⠂⡡⢈⠱⣉⠿⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⣠⣾⣗⠣⡑⠜⡙⣿⡞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⠯⡌⠂⢄⠂⡑⢠⠘⠠⢁⢂⠉⡄⠂⠅⢂⠂⠌⡐⢈⠂⡔⠨⠽⢿⣄⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⣼⡹⢑⠚⠤⡑⢊⠔⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⢏⡐⡰⠉⡄⠌⡐⠄⠌⢂⡁⠂⢌⠠⠑⣈⠰⢈⡐⠌⡠⢃⢌⡱⢊⠽⣟⡄⠀⠀⠀⠀⠀⠀⠀
-⠀⣄⠀⠀⡷⣵⠃⡜⢠⠱⢨⠘⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡿⢔⢆⠡⢃⠔⡨⢐⡈⠤⠁⠤⠉⠄⣂⠡⠄⢂⠆⡰⢈⡔⡡⢒⠴⣉⠞⡼⣻⡀⠀⠀⠀⠀⠀⠀
-⠘⣯⡷⠤⡽⢃⠜⡠⢃⠜⡠⢍⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⠯⢞⡨⠜⢢⠜⡠⢃⠔⡂⠍⡂⢍⠰⣀⠒⡌⢢⠘⡄⢣⠰⣡⢋⢖⡩⢞⡱⣳⡇⠀⠀⠀⠀⠀⠀
-⠀⠹⣼⢢⢰⢡⠊⡔⢡⠊⡔⢌⡣⡷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡟⡜⢦⡱⣩⢒⡬⠱⡌⢢⢱⡘⠴⣈⠖⡠⢃⡜⣠⢣⡜⣡⢓⠦⡍⢮⢱⣋⠶⣳⣿⠀⠀⠀⠀⠀⠀
-⠀⠀⠈⢷⣣⢧⢱⡨⣆⢱⢈⠆⡔⠡⢟⣆⠀⠀⠀⠀⣀⡤⠶⠲⢎⣙⣌⠖⣀⢂⡐⣀⠂⡄⢡⠐⡂⡄⡰⡀⡄⢂⠔⠡⡐⣀⢂⡐⣀⢂⠰⣀⢂⡄⢆⢒⡐⣞⢭⡑⢖⡦⢤⡀
-⠀⠀⠀⠀⠈⠻⣿⣵⣾⢿⠐⡌⠰⢃⡬⡝⣧⠀⠀⠀⠛⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⠋
-⠀⣆⠀⠀⠀⠀⠀⠙⠳⣄⠣⢌⢡⠃⠆⣅⣻⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⣽⡇⠀⠀⠀⠀⠀⠀⢀⣤⣸⡟⠉⣿⠁⠈⠁⠈⠀⠁⣈⣀⠁⠉⠀⠁⠈⠈⠀⠉⢸⡿⠁⠀⠀⠀⠀
-⠀⢹⣷⣦⣄⢀⣀⣠⡴⣛⢡⠊⠤⡉⡷⣿⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡿⣷⣄⠀⠀⠀⠀⠀⢻⣿⠟⡩⠜⡹⣆⡀⠀⠀⠀⠘⢿⣿⣷⠀⠀⠀⠀⠀⠀⢀⣾⡇⠀⠀⠀⠀⠀
-⠀⠸⣹⠎⡡⠒⠤⡘⢌⡉⢆⠩⣳⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣜⣽⡻⢶⠶⠶⡞⠯⠕⠬⠙⡰⠡⡙⠿⣶⣤⣀⡀⡈⠉⠁⠀⠀⣀⣀⣤⣶⢿⣿⡇⠀⠀⠀⠀⠀
-⠀⠀⣷⠑⡰⢉⠆⡑⢢⠘⡄⢓⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⡻⣿⣧⣄⣲⠔⣊⠵⡄⢂⠐⠠⠐⠠⠐⡀⠌⡙⠛⢛⠻⢿⣛⡛⣛⢛⢫⡱⢺⣾⠃⠀⠀⠀⠀⠀
-⠀⠀⡏⡜⢠⠃⡜⢰⣇⡚⣄⢣⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⣶⣙⠻⠻⠿⠷⣶⣮⣦⣍⣢⣍⢆⣱⢌⠖⣠⣍⣢⢱⣺⣷⣷⣎⢮⢧⡝⣷⡏⠀⠀⠀⠀⠀⠀
-⠀⠀⢻⣰⠃⡜⢠⢹⢸⠛⡄⢪⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠙⠛⡿⣿⠿⣿⣾⣷⣾⣿⢿⡿⣟⡟⣯⣛⢮⣿⠟⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠛⢾⣆⠡⠚⡏⢣⠘⡤⣧⠀⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠄⣀⡀⣠⡴⣎⣏⡟⣶⢫⡗⣞⠶⣓⡞⣧⢟⣼⣹⣶⣽⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠸⣌⢬⠑⡌⢢⠱⡈⢧⠳⣾⣟⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⣴⡿⢷⣯⣽⣧⣿⢶⣧⣿⢶⣯⣾⣭⣿⣵⢿⣼⣟⣾⣿⡟⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠙⠾⣥⡘⣄⢣⠘⡄⢣⣼⣿⣳⢂⠀⠀⠀⠀⠀⠀⢀⡀⢠⡶⠝⠛⠉⠀⣠⣾⣟⣯⣟⣾⢿⣽⣾⣻⢷⣯⣟⣾⡽⣯⡿⣞⣯⣟⡿⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠰⠷⠾⠎⢸⣿⣿⢇⢀⠀⠀⡀⢰⣸⠿⠏⠀⠀⠀⠀⠀⣾⣿⢿⣾⢿⣾⣏⣿⡾⣷⣿⢿⣾⣹⢷⣿⣏⡿⣿⣹⣾⡿⣿⣿⡀⠀⢀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢙⠟⡹⣸⠶⠛⠘⠁⠀⠀⠀⠀⠀⠀⢀⣾⡿⣽⣻⡾⣯⣷⣻⣽⣻⢷⣯⣿⣳⣿⣻⢷⣯⢿⣷⣻⢷⣻⣷⣻⣿⡄⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⡿⣽⣻⢷⣟⣯⣷⣟⡷⣿⣻⢾⣳⡿⣾⡽⣿⢾⣟⣾⢯⣿⣻⢾⣽⣯⣿⡄⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⢿⣽⣯⢿⣾⣻⢾⣽⣻⢷⣟⡿⣯⣟⣷⢿⣯⢿⡾⣯⣿⣳⢿⣯⢿⣾⡽⣿⡀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⣯⢿⣻⢾⣟⣷⣻⣯⢿⡽⣿⣞⣿⣽⢾⣯⢿⣾⣻⣽⡷⣯⣟⡿⣾⣟⣷⣿⣿⣷⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⡿⣞⣿⢯⣿⢾⣯⢷⣟⣯⡿⣷⣻⣾⡽⣟⣾⣟⡷⣯⣷⣟⣯⡿⣽⣷⣻⢿⣾⣯⣿⡄⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⣻⢯⣟⡿⣾⣟⣾⢿⣽⣳⡿⣯⣷⢯⣟⣿⣳⣯⢿⣻⡾⣽⣳⣿⣻⢾⣟⣿⣯⣿⣽⣧⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⣽⣻⣯⢿⣳⣯⣟⣿⣞⣯⣿⢷⣯⣿⣻⣾⣽⢯⣿⢷⣟⣿⣽⣾⣻⣯⣿⣯⣿⣽⣿⣿⡀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠄⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣤⣤⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣿⣿⣿⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⣤⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠿⡿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢿⠿⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡃⠀⠀⠈⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡅⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠆⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡃⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡅⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠆⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣺⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡃⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠁⠀⠀⠀⠀*/
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣴⡞⢫⠔⢊⢁⢂⠐⠤⢈⠉⡙⠿⣲⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⣾⠓⡉⠐⠤⠈⡄⠂⡄⢊⠐⡠⠡⢐⠨⢈⠙⠾⣳⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⣀⡴⣖⠳⡳⣤⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣞⠏⣈⠡⠐⡉⠄⡡⠠⠡⠐⢂⠡⠠⢁⢂⠂⡡⢈⠱⣉⠿⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⣠⣾⣗⠣⡑⠜⡙⣿⡞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⠯⡌⠂⢄⠂⡑⢠⠘⠠⢁⢂⠉⡄⠂⠅⢂⠂⠌⡐⢈⠂⡔⠨⠽⢿⣄⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⣼⡹⢑⠚⠤⡑⢊⠔⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⢏⡐⡰⠉⡄⠌⡐⠄⠌⢂⡁⠂⢌⠠⠑⣈⠰⢈⡐⠌⡠⢃⢌⡱⢊⠽⣟⡄⠀⠀⠀⠀⠀⠀⠀
+	⠀⣄⠀⠀⡷⣵⠃⡜⢠⠱⢨⠘⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡿⢔⢆⠡⢃⠔⡨⢐⡈⠤⠁⠤⠉⠄⣂⠡⠄⢂⠆⡰⢈⡔⡡⢒⠴⣉⠞⡼⣻⡀⠀⠀⠀⠀⠀⠀
+	⠘⣯⡷⠤⡽⢃⠜⡠⢃⠜⡠⢍⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⠯⢞⡨⠜⢢⠜⡠⢃⠔⡂⠍⡂⢍⠰⣀⠒⡌⢢⠘⡄⢣⠰⣡⢋⢖⡩⢞⡱⣳⡇⠀⠀⠀⠀⠀⠀
+	⠀⠹⣼⢢⢰⢡⠊⡔⢡⠊⡔⢌⡣⡷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡟⡜⢦⡱⣩⢒⡬⠱⡌⢢⢱⡘⠴⣈⠖⡠⢃⡜⣠⢣⡜⣡⢓⠦⡍⢮⢱⣋⠶⣳⣿⠀⠀⠀⠀⠀⠀
+	⠀⠀⠈⢷⣣⢧⢱⡨⣆⢱⢈⠆⡔⠡⢟⣆⠀⠀⠀⠀⣀⡤⠶⠲⢎⣙⣌⠖⣀⢂⡐⣀⠂⡄⢡⠐⡂⡄⡰⡀⡄⢂⠔⠡⡐⣀⢂⡐⣀⢂⠰⣀⢂⡄⢆⢒⡐⣞⢭⡑⢖⡦⢤⡀
+	⠀⠀⠀⠀⠈⠻⣿⣵⣾⢿⠐⡌⠰⢃⡬⡝⣧⠀⠀⠀⠛⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⠋
+	⠀⣆⠀⠀⠀⠀⠀⠙⠳⣄⠣⢌⢡⠃⠆⣅⣻⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⣽⡇⠀⠀⠀⠀⠀⠀⢀⣤⣸⡟⠉⣿⠁⠈⠁⠈⠀⠁⣈⣀⠁⠉⠀⠁⠈⠈⠀⠉⢸⡿⠁⠀⠀⠀⠀
+	⠀⢹⣷⣦⣄⢀⣀⣠⡴⣛⢡⠊⠤⡉⡷⣿⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡿⣷⣄⠀⠀⠀⠀⠀⢻⣿⠟⡩⠜⡹⣆⡀⠀⠀⠀⠘⢿⣿⣷⠀⠀⠀⠀⠀⠀⢀⣾⡇⠀⠀⠀⠀⠀
+	⠀⠸⣹⠎⡡⠒⠤⡘⢌⡉⢆⠩⣳⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣜⣽⡻⢶⠶⠶⡞⠯⠕⠬⠙⡰⠡⡙⠿⣶⣤⣀⡀⡈⠉⠁⠀⠀⣀⣀⣤⣶⢿⣿⡇⠀⠀⠀⠀⠀
+	⠀⠀⣷⠑⡰⢉⠆⡑⢢⠘⡄⢓⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⡻⣿⣧⣄⣲⠔⣊⠵⡄⢂⠐⠠⠐⠠⠐⡀⠌⡙⠛⢛⠻⢿⣛⡛⣛⢛⢫⡱⢺⣾⠃⠀⠀⠀⠀⠀
+	⠀⠀⡏⡜⢠⠃⡜⢰⣇⡚⣄⢣⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⣶⣙⠻⠻⠿⠷⣶⣮⣦⣍⣢⣍⢆⣱⢌⠖⣠⣍⣢⢱⣺⣷⣷⣎⢮⢧⡝⣷⡏⠀⠀⠀⠀⠀⠀
+	⠀⠀⢻⣰⠃⡜⢠⢹⢸⠛⡄⢪⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠙⠛⡿⣿⠿⣿⣾⣷⣾⣿⢿⡿⣟⡟⣯⣛⢮⣿⠟⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠛⢾⣆⠡⠚⡏⢣⠘⡤⣧⠀⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠄⣀⡀⣠⡴⣎⣏⡟⣶⢫⡗⣞⠶⣓⡞⣧⢟⣼⣹⣶⣽⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠸⣌⢬⠑⡌⢢⠱⡈⢧⠳⣾⣟⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⣴⡿⢷⣯⣽⣧⣿⢶⣧⣿⢶⣯⣾⣭⣿⣵⢿⣼⣟⣾⣿⡟⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠙⠾⣥⡘⣄⢣⠘⡄⢣⣼⣿⣳⢂⠀⠀⠀⠀⠀⠀⢀⡀⢠⡶⠝⠛⠉⠀⣠⣾⣟⣯⣟⣾⢿⣽⣾⣻⢷⣯⣟⣾⡽⣯⡿⣞⣯⣟⡿⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠰⠷⠾⠎⢸⣿⣿⢇⢀⠀⠀⡀⢰⣸⠿⠏⠀⠀⠀⠀⠀⣾⣿⢿⣾⢿⣾⣏⣿⡾⣷⣿⢿⣾⣹⢷⣿⣏⡿⣿⣹⣾⡿⣿⣿⡀⠀⢀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢙⠟⡹⣸⠶⠛⠘⠁⠀⠀⠀⠀⠀⠀⢀⣾⡿⣽⣻⡾⣯⣷⣻⣽⣻⢷⣯⣿⣳⣿⣻⢷⣯⢿⣷⣻⢷⣻⣷⣻⣿⡄⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⡿⣽⣻⢷⣟⣯⣷⣟⡷⣿⣻⢾⣳⡿⣾⡽⣿⢾⣟⣾⢯⣿⣻⢾⣽⣯⣿⡄⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⢿⣽⣯⢿⣾⣻⢾⣽⣻⢷⣟⡿⣯⣟⣷⢿⣯⢿⡾⣯⣿⣳⢿⣯⢿⣾⡽⣿⡀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⣯⢿⣻⢾⣟⣷⣻⣯⢿⡽⣿⣞⣿⣽⢾⣯⢿⣾⣻⣽⡷⣯⣟⡿⣾⣟⣷⣿⣿⣷⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⡿⣞⣿⢯⣿⢾⣯⢷⣟⣯⡿⣷⣻⣾⡽⣟⣾⣟⡷⣯⣷⣟⣯⡿⣽⣷⣻⢿⣾⣯⣿⡄⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⣻⢯⣟⡿⣾⣟⣾⢿⣽⣳⡿⣯⣷⢯⣟⣿⣳⣯⢿⣻⡾⣽⣳⣿⣻⢾⣟⣿⣯⣿⣽⣧⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⣽⣻⣯⢿⣳⣯⣟⣿⣞⣯⣿⢷⣯⣿⣻⣾⣽⢯⣿⢷⣟⣿⣽⣾⣻⣯⣿⣯⣿⣽⣿⣿⡀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠄⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣤⣤⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣿⣿⣿⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⣤⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠿⡿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢿⠿⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡃⠀⠀⠈⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡅⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠆⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡃⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡅⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠆⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣺⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡃⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠁⠀⠀⠀⠀ */
 // and
 /* ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢶⣦⣀⡀⠀⠀⠀⠤⣤⣤⣤⣤⣤⣄⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣸⣿⡟⠿⣷⣦⣄⣀⣀⡙⠻⣿⣿⣿⡛⠻⠿⣿⣷⣦⣤⣄⠀⠀⠀⠀⠀⠀⠀⢀⣼⣿⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣶⣶⣾⠿⠿⠿⠟⠛⠛⢻⣧⠀⠈⠙⠻⢿⣿⣿⠿⠿⠿⢿⣿⣶⣤⣀⠀⠉⠙⠻⠿⣷⣦⣄⡀⠀⣀⣾⠟⠁⢿⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⣀⣤⣴⣾⠿⠟⠛⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠘⣿⠀⠀⠀⠀⠀⠙⠻⣧⡀⠀⠀⠀⠈⠉⠙⠳⢄⠀⠀⠀⠀⠉⠛⢿⣷⣿⡋⠀⠀⠀⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠐⢿⣿⣏⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⠀⠀⠀⠀⠀⠀⠀⠈⠛⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠛⢿⣷⣤⡀⢹⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠹⢿⣷⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣸⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⣾⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠋⣭⡍⢻⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⢤⣤⣤⣤⣤⣤⣤⣤⣤⣬⣿⣿⣦⣀⠀⠀⠀⠀⠀⠀⠀⠀⣸⠃⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣤⣄⣀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⡀⠀⠀⠀⠀⠘⢻⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠙⠿⣿⣿⣍⡉⠉⠉⠉⠉⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⢰⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⠾⠋⠉⠉⠉⠛⠷⣦⣀⣤⡀⣠⡾⠏⠉⠉⠳⣦⡀⠀⠀⠀⠀⠻⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠈⠛⢿⣿⣶⣦⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⠟⠁⠀⠀⠀⠀⠀⠀⠀⠈⢻⣿⣿⡿⠁⠀⠀⠀⠀⠀⠹⣦⠀⠀⠀⠀⣽⡇⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠈⠙⠛⠿⢿⣿⣶⣤⣤⣄⣀⡀⠀⠀⠀⢻⡄⠀⠀⠀⠀⠀⡄⠀⣠⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠟⠀⠀⠀⠀⠀⡴⠚⠛⢾⣷⡀⠀⢀⣿⣿⡟⠛⣷⡄⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⣀⣠⣤⣶⣶⣾⣿⠿⠿⠟⠛⠉⠉⠁⠀⠀⢸⣿⡄⠀⠀⠀⣸⣶⣴⡟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣤⢶⠀⠀⠀⠀⠀⠀⣼⠁⠀⢠⠈⣿⡇⠀⣼⣿⡏⠀⠀⠸⣿⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⣤⣶⣾⣿⠿⠟⠛⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⣿⣶⣶⣶⣿⣿⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡾⠁⡜⠀⠀⠀⠀⠀⠀⡏⢀⣀⣿⠀⣿⣷⣶⣿⣿⡇⠀⠀⠀⣿⣀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠉⠛⠿⣿⣦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣿⣿⣿⣿⣟⠿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠁⣰⠃⠀⠀⠀⠀⠀⠀⢷⠈⠉⠇⢠⣿⣿⣿⠛⣿⣃⣠⡴⠾⢻⣿⣿⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠙⠻⢿⣦⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⡋⠉⠉⢙⣷⣌⢻⣦⡀⠀⠀⠀⠀⠀⠀⠀⠘⠒⠁⣀⣠⣴⠶⣦⣀⣀⣈⣳⣤⣴⠿⠿⢿⣿⣴⣿⣿⣿⣶⣾⡿⠟⠁⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠻⣿⣶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣧⠀⠀⣼⠃⠙⠳⣿⣿⣶⣤⣤⣤⣤⣤⣤⣶⡾⠟⠛⠉⠀⠀⠀⠀⠉⠛⠛⠉⠀⠀⠀⠀⠛⣿⡿⠛⠋⠉⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠿⣿⣶⣄⠀⠀⠀⠀⠀⠀⠀⠹⣧⣰⠇⠀⠀⠀⠀⠉⢻⠾⢭⣭⣉⣉⡀⠀⠀⠀⠀⣀⣀⣀⣤⡤⠶⠖⢻⡟⠢⠀⠀⢠⣾⣿⠇⠀⠀⢀⠿⠿⠿⠿⢶⣤⡀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣾⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⣄⠀⠀⠀⠀⢀⡟⠀⠀⠈⠉⠉⠛⢻⠟⠛⠋⠉⠉⢉⡞⠁⠀⢀⡞⠁⠀⢀⣴⣿⣿⣿⡀⠀⠀⠈⠀⠀⠀⠀⠀⠙⣿⣄⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣿⡟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢻⣷⣄⠀⢠⡞⠀⠀⠀⠀⠀⠀⢀⡞⠀⠀⠀⠀⢀⡾⠁⣠⣴⠛⠀⣠⣴⣿⠟⠁⠈⠙⠛⠻⠿⣶⡏⠀⠀⠀⠀⠀⠈⠻⣷⣄
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⣿⣾⣥⣀⡀⠀⠀⠀⢀⣞⣀⣀⣀⣠⣤⣾⣞⣛⣡⣤⣶⣿⠿⢿⡿⠀⠀⠀⠀⠀⠀⠀⠈⣿⡀⠀⠀⠀⠀⠀⠀⠀⢻
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⠋⠁⠀⢸⣷⠀⠀⢢⣀⠀⣀⣀⣴⡿⠁⠀⠀⠀⠀⠀⠀⢀⣾
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⠇⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣤⣤⡄⠀⢉⣿⠿⠿⢿⣿⣿⠿⠿⠿⠛⠛⠛⢿⣿⣦⠀⠀⠀⠀⠸⣿⡀⠀⠀⠉⠛⠛⠻⣧⣀⠀⠀⠀⠀⠀⠀⠀⣾⠏
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⡟⠀⠀⣀⣤⣶⣶⣿⠿⢿⣿⣿⠿⠋⠉⠁⢠⣿⠋⠙⣿⣴⣿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⡇⠀⠀⠀⠀⢿⣧⣀⣀⣀⠀⠀⠀⠈⠉⠻⠷⣦⣄⣀⣀⣼⡟⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣧⣶⣿⡿⠿⠋⠉⢀⣴⣿⠟⠁⠀⠀⠀⠀⣼⡿⠀⠀⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⡀⠀⠀⢠⣾⠟⠿⠿⠿⠿⢿⣦⣄⣀⣀⣴⡿⠙⠛⠛⠉⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠟⠋⠁⠀⠀⠀⣠⣿⣿⡁⠀⠀⠀⠀⠀⣴⣿⠃⠀⣸⣿⠇⢿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⢿⣷⣄⣹⣷⡀⠀⠀⠀⠀⠀⠙⠛⢻⣿⡇⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠰⠿⠿⠿⠿⣿⣷⣶⣤⣴⣿⠃⠀⣰⣿⡟⠀⠀⢻⣆⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⣄⡉⢻⣿⣿⣿⣦⣄⡀⠀⠀⠀⢀⣸⣿⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣴⣿⣿⣿⣭⣿⣿⠁⠀⣴⣿⣿⠁⠀⠀⠀⠙⢷⣤⣀⠀⠀⠀⠀⠀⢀⣠⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠿⠿⠟⠋⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣤⣤⣤⣤⣤⣀⣽⣿⣿⣿⣷⣾⣿⣿⠃⠀⠀⠀⠀⠀⠀⠙⢿⣿⣷⣶⣾⣿⣿⣿⣿⢻⣿⠃⠛⠿⣿⣿⣿⣿⣿⠿⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⡿⠉⠉⠉⠙⠿⣿⣿⣿⣾⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠉⠻⠿⣿⠿⠿⠋⠁⣿⡟⠀⠀⠀⠀⠈⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣤⣶⣿⣷⣤⣄⠀⠀⠀⠈⢻⣿⣿⡿⢋⣾⠏⠈⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⣀⣤⣾⠟⠛⠉⠀⠀⠀⠀⠙⠻⣷⣄⠀⠀⠀⢻⣷⣀⣾⡟⠀⠀⣿⣿⠀⠀⠀⠀⠀⣾⠿⠿⠿⣿⡏⠀⠀⣾⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⢀⣾⠿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣇⠀⢀⣼⣿⣿⢿⣿⣶⣶⣿⡏⠀⠀⠀⠀⣼⡿⠀⠀⢠⣿⠀⠀⢠⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⢠⣿⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣾⣿⣿⣿⣿⣾⡿⠟⢻⣿⠃⠀⠀⠀⢰⣿⠁⠀⠀⣾⡟⠀⠀⣸⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⣼⣿⠀⠀⠀⠀⠀⠀⠀⠀⣀⠀⠀⠀⠀⢀⣿⡟⠛⠛⠉⠉⠁⠀⠀⢠⣿⣇⣀⡀⠀⢠⣿⠃⠀⠀⢠⣿⠁⠀⢠⣿⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⢻⣿⠀⠀⠀⠀⠀⠀⢠⣾⣿⡇⠀⠀⠀⣼⡿⠀⠀⠀⠀⠀⠀⠀⢀⣿⡿⠶⢿⣿⣷⣾⡏⠀⠀⠀⣼⣿⣶⣶⣾⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠈⣿⣆⠀⠈⠀⠀⢠⣿⠟⣿⡇⠀⠀⢸⣿⠃⠀⠀⢀⣴⡶⢶⣶⣾⣿⣿⣿⠶⣬⣹⡿⠁⠀⠀⢰⣿⣿⣯⣽⣿⣇⣤⣤⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⢸⣿⠀⠀⠀⠀⣸⡿⢀⣿⡇⠀⠀⣿⡇⠀⠀⠀⢸⣿⠀⠀⠀⠈⠙⠻⢿⣷⣾⣿⠇⠀⠀⠀⣼⣿⣿⡿⠿⠛⠛⠋⠉⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⢸⣿⠀⠀⠀⢠⣿⡇⠈⣿⣇⠀⠀⣿⡇⠀⠀⠀⣼⡟⠀⠀⠀⠀⠀⠀⠀⠈⠛⠿⣶⣴⡶⠿⠟⠋⠁⠀⠀⠀⠀⠀⣸⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠈⣿⣧⠀⠀⣼⣿⠁⠀⠘⠻⠿⠿⠿⠃⠀⠀⠀⢻⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠈⠻⠿⠿⠟⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣼⣿⣿⣿⣷⣶⢦⣤⣄⡀⠀⢀⣾⣟⠀⠀⠀⠀⠀⢀⣀⣠⣴⣿⡃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣠⣴⣶⠿⠿⢿⣿⣿⣿⣿⣿⣷⣄⠉⠻⢶⣿⠋⣿⠿⠿⣿⣿⠿⣿⣿⣿⣿⣿⣿⣶⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⠟⠛⠋⠉⠀⠀⠀⠀⠙⠻⣿⣿⣿⣿⣿⣧⠀⠈⣿⣴⡟⠀⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⡿⠛⠛⠻⠿⢿⣷⣶⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⣿⠏⠉⢻⣇⠀⣿⣿⠇⠀⢀⣼⣿⣿⣿⣿⣿⣿⣿⠏⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⠀⣴⣆⣿⣠⣿⣿⡀⠀⣾⣿⣿⣿⣿⣿⣿⣿⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣾⣯⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣀⣿⣿⣿⠟⠋⠙⠻⢿⣿⣿⣿⣿⣿⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣘⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠙⠛⠿⠿⣶⣶⣦⣤⣤⣤⣤⣤⣤⣤⣶⣾⡿⠟⠉⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠙⠻⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠛⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-*/
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣸⣿⡟⠿⣷⣦⣄⣀⣀⡙⠻⣿⣿⣿⡛⠻⠿⣿⣷⣦⣤⣄⠀⠀⠀⠀⠀⠀⠀⢀⣼⣿⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣶⣶⣾⠿⠿⠿⠟⠛⠛⢻⣧⠀⠈⠙⠻⢿⣿⣿⠿⠿⠿⢿⣿⣶⣤⣀⠀⠉⠙⠻⠿⣷⣦⣄⡀⠀⣀⣾⠟⠁⢿⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⣀⣤⣴⣾⠿⠟⠛⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠘⣿⠀⠀⠀⠀⠀⠙⠻⣧⡀⠀⠀⠀⠈⠉⠙⠳⢄⠀⠀⠀⠀⠉⠛⢿⣷⣿⡋⠀⠀⠀⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠐⢿⣿⣏⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⠀⠀⠀⠀⠀⠀⠀⠈⠛⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠛⢿⣷⣤⡀⢹⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠹⢿⣷⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣸⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⣾⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠋⣭⡍⢻⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+	⢤⣤⣤⣤⣤⣤⣤⣤⣤⣬⣿⣿⣦⣀⠀⠀⠀⠀⠀⠀⠀⠀⣸⠃⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣤⣄⣀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⡀⠀⠀⠀⠀⠘⢻⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠙⠿⣿⣿⣍⡉⠉⠉⠉⠉⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⢰⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⠾⠋⠉⠉⠉⠛⠷⣦⣀⣤⡀⣠⡾⠏⠉⠉⠳⣦⡀⠀⠀⠀⠀⠻⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠈⠛⢿⣿⣶⣦⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⠟⠁⠀⠀⠀⠀⠀⠀⠀⠈⢻⣿⣿⡿⠁⠀⠀⠀⠀⠀⠹⣦⠀⠀⠀⠀⣽⡇⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠈⠙⠛⠿⢿⣿⣶⣤⣤⣄⣀⡀⠀⠀⠀⢻⡄⠀⠀⠀⠀⠀⡄⠀⣠⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠟⠀⠀⠀⠀⠀⡴⠚⠛⢾⣷⡀⠀⢀⣿⣿⡟⠛⣷⡄⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⣀⣠⣤⣶⣶⣾⣿⠿⠿⠟⠛⠉⠉⠁⠀⠀⢸⣿⡄⠀⠀⠀⣸⣶⣴⡟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣤⢶⠀⠀⠀⠀⠀⠀⣼⠁⠀⢠⠈⣿⡇⠀⣼⣿⡏⠀⠀⠸⣿⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⣤⣶⣾⣿⠿⠟⠛⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⣿⣶⣶⣶⣿⣿⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡾⠁⡜⠀⠀⠀⠀⠀⠀⡏⢀⣀⣿⠀⣿⣷⣶⣿⣿⡇⠀⠀⠀⣿⣀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠉⠛⠿⣿⣦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣿⣿⣿⣿⣟⠿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠁⣰⠃⠀⠀⠀⠀⠀⠀⢷⠈⠉⠇⢠⣿⣿⣿⠛⣿⣃⣠⡴⠾⢻⣿⣿⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠙⠻⢿⣦⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⡋⠉⠉⢙⣷⣌⢻⣦⡀⠀⠀⠀⠀⠀⠀⠀⠘⠒⠁⣀⣠⣴⠶⣦⣀⣀⣈⣳⣤⣴⠿⠿⢿⣿⣴⣿⣿⣿⣶⣾⡿⠟⠁⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠻⣿⣶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣧⠀⠀⣼⠃⠙⠳⣿⣿⣶⣤⣤⣤⣤⣤⣤⣶⡾⠟⠛⠉⠀⠀⠀⠀⠉⠛⠛⠉⠀⠀⠀⠀⠛⣿⡿⠛⠋⠉⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠿⣿⣶⣄⠀⠀⠀⠀⠀⠀⠀⠹⣧⣰⠇⠀⠀⠀⠀⠉⢻⠾⢭⣭⣉⣉⡀⠀⠀⠀⠀⣀⣀⣀⣤⡤⠶⠖⢻⡟⠢⠀⠀⢠⣾⣿⠇⠀⠀⢀⠿⠿⠿⠿⢶⣤⡀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣾⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⣄⠀⠀⠀⠀⢀⡟⠀⠀⠈⠉⠉⠛⢻⠟⠛⠋⠉⠉⢉⡞⠁⠀⢀⡞⠁⠀⢀⣴⣿⣿⣿⡀⠀⠀⠈⠀⠀⠀⠀⠀⠙⣿⣄⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣿⡟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢻⣷⣄⠀⢠⡞⠀⠀⠀⠀⠀⠀⢀⡞⠀⠀⠀⠀⢀⡾⠁⣠⣴⠛⠀⣠⣴⣿⠟⠁⠈⠙⠛⠻⠿⣶⡏⠀⠀⠀⠀⠀⠈⠻⣷⣄
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⣿⣾⣥⣀⡀⠀⠀⠀⢀⣞⣀⣀⣀⣠⣤⣾⣞⣛⣡⣤⣶⣿⠿⢿⡿⠀⠀⠀⠀⠀⠀⠀⠈⣿⡀⠀⠀⠀⠀⠀⠀⠀⢻
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⠋⠁⠀⢸⣷⠀⠀⢢⣀⠀⣀⣀⣴⡿⠁⠀⠀⠀⠀⠀⠀⢀⣾
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⠇⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣤⣤⡄⠀⢉⣿⠿⠿⢿⣿⣿⠿⠿⠿⠛⠛⠛⢿⣿⣦⠀⠀⠀⠀⠸⣿⡀⠀⠀⠉⠛⠛⠻⣧⣀⠀⠀⠀⠀⠀⠀⠀⣾⠏
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⡟⠀⠀⣀⣤⣶⣶⣿⠿⢿⣿⣿⠿⠋⠉⠁⢠⣿⠋⠙⣿⣴⣿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⡇⠀⠀⠀⠀⢿⣧⣀⣀⣀⠀⠀⠀⠈⠉⠻⠷⣦⣄⣀⣀⣼⡟⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣧⣶⣿⡿⠿⠋⠉⢀⣴⣿⠟⠁⠀⠀⠀⠀⣼⡿⠀⠀⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⡀⠀⠀⢠⣾⠟⠿⠿⠿⠿⢿⣦⣄⣀⣀⣴⡿⠙⠛⠛⠉⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠟⠋⠁⠀⠀⠀⣠⣿⣿⡁⠀⠀⠀⠀⠀⣴⣿⠃⠀⣸⣿⠇⢿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⢿⣷⣄⣹⣷⡀⠀⠀⠀⠀⠀⠙⠛⢻⣿⡇⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠰⠿⠿⠿⠿⣿⣷⣶⣤⣴⣿⠃⠀⣰⣿⡟⠀⠀⢻⣆⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⣄⡉⢻⣿⣿⣿⣦⣄⡀⠀⠀⠀⢀⣸⣿⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣴⣿⣿⣿⣭⣿⣿⠁⠀⣴⣿⣿⠁⠀⠀⠀⠙⢷⣤⣀⠀⠀⠀⠀⠀⢀⣠⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠿⠿⠟⠋⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣤⣤⣤⣤⣤⣀⣽⣿⣿⣿⣷⣾⣿⣿⠃⠀⠀⠀⠀⠀⠀⠙⢿⣿⣷⣶⣾⣿⣿⣿⣿⢻⣿⠃⠛⠿⣿⣿⣿⣿⣿⠿⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⡿⠉⠉⠉⠙⠿⣿⣿⣿⣾⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠉⠻⠿⣿⠿⠿⠋⠁⣿⡟⠀⠀⠀⠀⠈⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣤⣶⣿⣷⣤⣄⠀⠀⠀⠈⢻⣿⣿⡿⢋⣾⠏⠈⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⣀⣤⣾⠟⠛⠉⠀⠀⠀⠀⠙⠻⣷⣄⠀⠀⠀⢻⣷⣀⣾⡟⠀⠀⣿⣿⠀⠀⠀⠀⠀⣾⠿⠿⠿⣿⡏⠀⠀⣾⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⢀⣾⠿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣇⠀⢀⣼⣿⣿⢿⣿⣶⣶⣿⡏⠀⠀⠀⠀⣼⡿⠀⠀⢠⣿⠀⠀⢠⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⢠⣿⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣾⣿⣿⣿⣿⣾⡿⠟⢻⣿⠃⠀⠀⠀⢰⣿⠁⠀⠀⣾⡟⠀⠀⣸⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⣼⣿⠀⠀⠀⠀⠀⠀⠀⠀⣀⠀⠀⠀⠀⢀⣿⡟⠛⠛⠉⠉⠁⠀⠀⢠⣿⣇⣀⡀⠀⢠⣿⠃⠀⠀⢠⣿⠁⠀⢠⣿⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⢻⣿⠀⠀⠀⠀⠀⠀⢠⣾⣿⡇⠀⠀⠀⣼⡿⠀⠀⠀⠀⠀⠀⠀⢀⣿⡿⠶⢿⣿⣷⣾⡏⠀⠀⠀⣼⣿⣶⣶⣾⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠈⣿⣆⠀⠈⠀⠀⢠⣿⠟⣿⡇⠀⠀⢸⣿⠃⠀⠀⢀⣴⡶⢶⣶⣾⣿⣿⣿⠶⣬⣹⡿⠁⠀⠀⢰⣿⣿⣯⣽⣿⣇⣤⣤⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⢸⣿⠀⠀⠀⠀⣸⡿⢀⣿⡇⠀⠀⣿⡇⠀⠀⠀⢸⣿⠀⠀⠀⠈⠙⠻⢿⣷⣾⣿⠇⠀⠀⠀⣼⣿⣿⡿⠿⠛⠛⠋⠉⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⢸⣿⠀⠀⠀⢠⣿⡇⠈⣿⣇⠀⠀⣿⡇⠀⠀⠀⣼⡟⠀⠀⠀⠀⠀⠀⠀⠈⠛⠿⣶⣴⡶⠿⠟⠋⠁⠀⠀⠀⠀⠀⣸⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠈⣿⣧⠀⠀⣼⣿⠁⠀⠘⠻⠿⠿⠿⠃⠀⠀⠀⢻⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠈⠻⠿⠿⠟⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣼⣿⣿⣿⣷⣶⢦⣤⣄⡀⠀⢀⣾⣟⠀⠀⠀⠀⠀⢀⣀⣠⣴⣿⡃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣠⣴⣶⠿⠿⢿⣿⣿⣿⣿⣿⣷⣄⠉⠻⢶⣿⠋⣿⠿⠿⣿⣿⠿⣿⣿⣿⣿⣿⣿⣶⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⠟⠛⠋⠉⠀⠀⠀⠀⠙⠻⣿⣿⣿⣿⣿⣧⠀⠈⣿⣴⡟⠀⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⡿⠛⠛⠻⠿⢿⣷⣶⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⣿⠏⠉⢻⣇⠀⣿⣿⠇⠀⢀⣼⣿⣿⣿⣿⣿⣿⣿⠏⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⠀⣴⣆⣿⣠⣿⣿⡀⠀⣾⣿⣿⣿⣿⣿⣿⣿⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣾⣯⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣀⣿⣿⣿⠟⠋⠙⠻⢿⣿⣿⣿⣿⣿⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣘⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠙⠛⠿⠿⣶⣶⣦⣤⣤⣤⣤⣤⣤⣤⣶⣾⡿⠟⠉⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠙⠻⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠛⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+ */
 // G R A H ! ! ! ! ! !
 class PlayState extends MusicBeatState
 {
@@ -212,6 +209,7 @@ class PlayState extends MusicBeatState
 
 	private var iconP1:HealthIcon;
 	private var iconP2:HealthIcon;
+
 	private static var camHUD:FlxCamera;
 	private static var camGame:FlxCamera;
 
@@ -277,36 +275,37 @@ class PlayState extends MusicBeatState
 	var camPos:FlxPoint;
 	var lightFadeShader:BuildingShaders;
 
-	//Rating Count
+	// Rating Count
 	var sicks:Int = 0;
 	var goods:Int = 0;
 	var bads:Int = 0;
 	var shits:Int = 0;
 	var misses:Int = 0;
 
-	//GamePlay Settings
+	// GamePlay Settings
 	public static var isdownscroll:Bool = false;
 	public static var ismiddlescroll:Bool = false;
 
 	#if linc_luajit
-	//lua shit
-	//public var boyfriendMap:Map<String, Boyfriend> = new Map();
-	//public var dadMap:Map<String, Character> = new Map();
-	//public var gfMap:Map<String, Character> = new Map();
-	//public var modchartTweens:Map<String, FlxTween> = new Map<String, FlxTween>();
-	//public var modchartSprites:Map<String, ModchartSprite> = new Map<String, ModchartSprite>();
-	//public var modchartTimers:Map<String, FlxTimer> = new Map<String, FlxTimer>();
-	//public var modchartSounds:Map<String, FlxSound> = new Map<String, FlxSound>();
-	//public var modchartTexts:Map<String, ModchartText> = new Map<String, ModchartText>();
-	//public var modchartSaves:Map<String, FlxSave> = new Map<String, FlxSave>();
+	// lua shit
+	// public var boyfriendMap:Map<String, Boyfriend> = new Map();
+	// public var dadMap:Map<String, Character> = new Map();
+	// public var gfMap:Map<String, Character> = new Map();
+	// public var modchartTweens:Map<String, FlxTween> = new Map<String, FlxTween>();
+	// public var modchartSprites:Map<String, ModchartSprite> = new Map<String, ModchartSprite>();
+	// public var modchartTimers:Map<String, FlxTimer> = new Map<String, FlxTimer>();
+	// public var modchartSounds:Map<String, FlxSound> = new Map<String, FlxSound>();
+	// public var modchartTexts:Map<String, ModchartText> = new Map<String, ModchartText>();
+	// public var modchartSaves:Map<String, FlxSave> = new Map<String, FlxSave>();
 	public var variables:Map<String, Dynamic> = new Map();
 	public var luaArray:Array<LuaHandler> = [];
+
 	private var luaDebugGroup:FlxTypedGroup<DebugLuaText>;
 	#end
 
 	override public function create()
 	{
-		//GamePlay Settings
+		// GamePlay Settings
 		isdownscroll = PreferencesMenu.getPref('downscroll');
 		ismiddlescroll = PreferencesMenu.getPref('middlescroll');
 
@@ -1020,10 +1019,11 @@ class PlayState extends MusicBeatState
 
 		// hi kade
 		botPlayState = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 75, healthBarBG.y + (FlxG.save.data.downscroll ? 100 : -100), 0, "BOTPLAY", 20);
-		botPlayState.setFormat(Paths.font("vcr.ttf"), 42, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+		botPlayState.setFormat(Paths.font("vcr.ttf"), 42, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		botPlayState.scrollFactor.set();
-		
-		if(botplay) add(botPlayState);
+
+		if (botplay)
+			add(botPlayState);
 
 		grpNoteSplashes.cameras = [camHUD];
 		strumLineNotes.cameras = [camHUD];
@@ -1042,14 +1042,14 @@ class PlayState extends MusicBeatState
 
 		// cameras = [FlxG.cameras.list[1]];
 
-		//lua shit
+		// lua shit
 		#if linc_luajit
 		var luaFileList:Array<String> = Paths.filelist(openfl.utils.AssetType.SCRIPT);
 		for (lua in luaFileList)
 		{
-			if(lua.endsWith('.lua'))
+			if (lua.endsWith('.lua'))
 			{
-				luaArray.push(new LuaHandler(Paths.script(lua).replace("scripts:","")));
+				luaArray.push(new LuaHandler(Paths.script(lua).replace("scripts:", "")));
 			}
 		}
 		#end
@@ -1118,7 +1118,7 @@ class PlayState extends MusicBeatState
 				default:
 					startCountdown();
 			}
-		} 
+		}
 
 		super.create();
 	}
@@ -1128,7 +1128,7 @@ class PlayState extends MusicBeatState
 		#if hxCodec
 		inCutscene = true;
 		FlxG.sound.music.stop();
-	
+
 		var video:VideoHandler = new VideoHandler();
 		video.finishCallback = function()
 		{
@@ -1136,19 +1136,19 @@ class PlayState extends MusicBeatState
 			if (atEndOfSong)
 			{
 				if (storyPlaylist.length <= 0)
-				FlxG.switchState(new StoryMenuState());
+					FlxG.switchState(new StoryMenuState());
 				else
 				{
-				SONG = Song.loadFromJson(storyPlaylist[0].toLowerCase());
-				FlxG.switchState(new PlayState());
+					SONG = Song.loadFromJson(storyPlaylist[0].toLowerCase());
+					FlxG.switchState(new PlayState());
 				}
 			}
 			else
 				FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, (Conductor.crochet / 1000) * 5, {ease: FlxEase.quadInOut});
-				startCountdown();
-				cameraMovement();
+			startCountdown();
+			cameraMovement();
 		}
-		video.playVideo(Paths.video(name).replace("videos:",""));
+		video.playVideo(Paths.video(name).replace("videos:", ""));
 		#else
 		inCutscene = true;
 		var vid:FlxVideo = new FlxVideo(name);
@@ -1164,7 +1164,6 @@ class PlayState extends MusicBeatState
 
 	function ughIntro()
 	{
-
 		var blackShit:FlxSprite = new FlxSprite(-200, -200).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
 		blackShit.scrollFactor.set();
 		add(blackShit);
@@ -1244,7 +1243,6 @@ class PlayState extends MusicBeatState
 
 	function gunsIntro()
 	{
-
 		var blackShit:FlxSprite = new FlxSprite(-200, -200).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
 		blackShit.scrollFactor.set();
 		add(blackShit);
@@ -1311,13 +1309,12 @@ class PlayState extends MusicBeatState
 
 	function stressIntro()
 	{
-
 		var blackShit:FlxSprite = new FlxSprite(-200, -200).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
 		blackShit.scrollFactor.set();
 		add(blackShit);
 
 		playCutscene('stressCutscene.mp4');
-		
+
 		remove(blackShit);
 
 		/* camHUD.visible = false;
@@ -1711,24 +1708,26 @@ class PlayState extends MusicBeatState
 				introSprPaths = ['weeb/pixelUI/ready-pixel', 'weeb/pixelUI/set-pixel', 'weeb/pixelUI/date-pixel'];
 			}
 
-			var introSndPaths:Array<String> = ["intro3" + altSuffix, "intro2" + altSuffix,
-				"intro1" + altSuffix, "introGo" + altSuffix];
+			var introSndPaths:Array<String> = [
+				"intro3" + altSuffix, "intro2" + altSuffix,
+				"intro1" + altSuffix, "introGo" + altSuffix
+			];
 
 			if (swagCounter > 0)
 				readySetGo(introSprPaths[swagCounter - 1]);
 			FlxG.sound.play(Paths.sound(introSndPaths[swagCounter]), 0.6);
 
 			/* switch (swagCounter)
-			{
-				case 0:
-					
-				case 1:
-					
-				case 2:
-					
-				case 3:
-					
-			} */
+				{
+					case 0:
+						
+					case 1:
+						
+					case 2:
+						
+					case 3:
+						
+			}*/
 
 			swagCounter += 1;
 		}, 4);
@@ -1771,7 +1770,6 @@ class PlayState extends MusicBeatState
 		// Song duration in a float, useful for the time left feature
 		songLength = FlxG.sound.music.length;
 		#if discord_rpc
-
 		// Updating Discord Rich Presence (with Time Left)
 		DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconRPC, true, songLength);
 		#end
@@ -1837,7 +1835,8 @@ class PlayState extends MusicBeatState
 				{
 					oldNote = unspawnNotes[Std.int(unspawnNotes.length - 1)];
 
-					var sustainNote:Note = new Note(daStrumTime + (Conductor.stepCrochet * susNote) + Conductor.stepCrochet, daNoteData, oldNote, true, daNoteType);
+					var sustainNote:Note = new Note(daStrumTime + (Conductor.stepCrochet * susNote) + Conductor.stepCrochet, daNoteData, oldNote, true,
+						daNoteType);
 					sustainNote.scrollFactor.set();
 					unspawnNotes.push(sustainNote);
 
@@ -1847,10 +1846,10 @@ class PlayState extends MusicBeatState
 					{
 						sustainNote.x += FlxG.width / 2; // general offset
 					}
-					else if(ismiddlescroll)
+					else if (ismiddlescroll)
 					{
 						sustainNote.x += 310;
-						if(daNoteData > 1) //Up and Right
+						if (daNoteData > 1) // Up and Right
 						{
 							sustainNote.x += FlxG.width / 2 + 25;
 						}
@@ -1859,15 +1858,14 @@ class PlayState extends MusicBeatState
 
 				swagNote.mustPress = gottaHitNote;
 
-
 				if (swagNote.mustPress)
 				{
 					swagNote.x += FlxG.width / 2; // general offset
 				}
-				else if(ismiddlescroll)
+				else if (ismiddlescroll)
 				{
 					swagNote.x += 310;
-					if(daNoteData > 1) //Up and Right
+					if (daNoteData > 1) // Up and Right
 					{
 						swagNote.x += FlxG.width / 2 + 25;
 					}
@@ -1904,7 +1902,8 @@ class PlayState extends MusicBeatState
 			// FlxG.log.add(i);
 			var targetAlpha:Float = 1;
 			if (player == 0)
-				if(ismiddlescroll) targetAlpha = 0.35;
+				if (ismiddlescroll)
+					targetAlpha = 0.35;
 
 			var babyArrow:StrumNote = new StrumNote(0, strumLine.y, i, player);
 			var colorswap:ColorSwap = new ColorSwap();
@@ -1929,15 +1928,16 @@ class PlayState extends MusicBeatState
 			babyArrow.x += 110;
 			babyArrow.x += ((FlxG.width / 2) * player);
 
-			if(ismiddlescroll)
+			if (ismiddlescroll)
 				babyArrow.x -= 320;
 
 			if (player == 0)
 			{
-				if(ismiddlescroll)
+				if (ismiddlescroll)
 				{
 					babyArrow.x += 310;
-					if(i > 1) { //Up and Right
+					if (i > 1)
+					{ // Up and Right
 						babyArrow.x += FlxG.width / 2 + 25;
 					}
 				}
@@ -2173,17 +2173,23 @@ class PlayState extends MusicBeatState
 		if (FlxG.keys.justPressed.EIGHT)
 		{
 			/* 	 8 for opponent char
-			   SHIFT+8 for player char
-				 CTRL+SHIFT+8 for gf   */
-			if (FlxG.keys.pressed.SHIFT){
-				if (FlxG.keys.pressed.CONTROL){
+							   SHIFT+8 for player char
+				CTRL+SHIFT+8 for gf */
+			if (FlxG.keys.pressed.SHIFT)
+			{
+				if (FlxG.keys.pressed.CONTROL)
+				{
 					Application.current.window.onFocusOut.remove(onWindowFocusOut);
 					FlxG.switchState(new AnimationDebug(gf.curCharacter));
-				}else{
+				}
+				else
+				{
 					Application.current.window.onFocusOut.remove(onWindowFocusOut);
 					FlxG.switchState(new AnimationDebug(SONG.player1));
 				}
-			}else{
+			}
+			else
+			{
 				Application.current.window.onFocusOut.remove(onWindowFocusOut);
 				FlxG.switchState(new AnimationDebug(SONG.player2));
 			}
@@ -2298,8 +2304,7 @@ class PlayState extends MusicBeatState
 		{
 			notes.forEachAlive(function(daNote:Note)
 			{
-				if ((isdownscroll && daNote.y < -daNote.height)
-					|| (!isdownscroll && daNote.y > FlxG.height))
+				if ((isdownscroll && daNote.y < -daNote.height) || (!isdownscroll && daNote.y > FlxG.height))
 				{
 					daNote.active = false;
 					daNote.visible = false;
@@ -2363,12 +2368,11 @@ class PlayState extends MusicBeatState
 				// var noteMiss:Bool = daNote.y < -daNote.height;
 
 				// if (isdownscroll)
-					// noteMiss = daNote.y > FlxG.height;
+				// noteMiss = daNote.y > FlxG.height;
 
 				if (daNote.isSustainNote && daNote.wasGoodHit)
 				{
-					if ((!isdownscroll && daNote.y < -daNote.height)
-						|| (isdownscroll && daNote.y > FlxG.height))
+					if ((!isdownscroll && daNote.y < -daNote.height) || (isdownscroll && daNote.y > FlxG.height))
 					{
 						daNote.active = false;
 						daNote.visible = false;
@@ -2471,7 +2475,7 @@ class PlayState extends MusicBeatState
 
 				if (SONG.validScore)
 				{
-					//NGio.unlockMedal(60961);
+					// NGio.unlockMedal(60961);
 					Highscore.saveWeekScore(storyWeek, campaignScore, storyDifficulty);
 				}
 
@@ -2547,7 +2551,8 @@ class PlayState extends MusicBeatState
 		if (msTimingTxtTween != null)
 			msTimingTxtTween.cancel();
 
-		switch (daRating){
+		switch (daRating)
+		{
 			case "sick":
 				sicks++;
 				isSick = true;
@@ -2639,7 +2644,7 @@ class PlayState extends MusicBeatState
 			startDelay: Conductor.crochet * 0.001
 		});
 
-		displayCombo(true,rating.y);
+		displayCombo(true, rating.y);
 	}
 
 	function displayCombo(flag:Bool = false, ratingy:Float = 0):Void
@@ -2738,7 +2743,8 @@ class PlayState extends MusicBeatState
 			daLoop++;
 		}
 
-		if (flag){
+		if (flag)
+		{
 			add(msTimingTxt);
 
 			msTimingTxt.screenCenter();
@@ -2746,11 +2752,12 @@ class PlayState extends MusicBeatState
 			msTimingTxt.y = ratingy + 100;
 			msTimingTxt.acceleration.y = 600;
 			msTimingTxt.velocity.y -= 150;
-	
+
 			msTimingTxt.velocity.x += comboSpr.velocity.x;
-	
+
 			msTimingTxtTween = FlxTween.tween(msTimingTxt, {alpha: 0}, 1, {
-				onComplete: function(twn:FlxTween) {
+				onComplete: function(twn:FlxTween)
+				{
 					msTimingTxtTween = null;
 				}
 			});
@@ -2819,8 +2826,9 @@ class PlayState extends MusicBeatState
 			controls.NOTE_UP_R,
 			controls.NOTE_RIGHT_R
 		];
-		
-		if (!botplay){
+
+		if (!botplay)
+		{
 			// HOLDS, check for sustain notes
 			if (holdArray.contains(true) && !boyfriend.stunned && generatedMusic)
 			{
@@ -2830,7 +2838,9 @@ class PlayState extends MusicBeatState
 						goodNoteHit(daNote);
 				});
 			}
-		}else{
+		}
+		else
+		{
 			// HOLDS, check for sustain notes
 			if (!boyfriend.stunned && generatedMusic)
 			{
@@ -2842,16 +2852,17 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (!botplay){
+		if (!botplay)
+		{
 			// PRESSES, check for note hits
 			if (pressArray.contains(true) && !boyfriend.stunned && generatedMusic)
 			{
 				boyfriend.holdTimer = 0;
-	
+
 				var possibleNotes:Array<Note> = []; // notes that can be hit
 				var directionList:Array<Int> = []; // directions that can be hit
 				var dumbNotes:Array<Note> = []; // notes to kill later
-	
+
 				notes.forEachAlive(function(daNote:Note)
 				{
 					if (daNote.canBeHit && daNote.mustPress && !daNote.tooLate && !daNote.wasGoodHit)
@@ -2881,7 +2892,7 @@ class PlayState extends MusicBeatState
 						}
 					}
 				});
-	
+
 				for (note in dumbNotes)
 				{
 					FlxG.log.add("killing dumb ass note at " + note.strumTime);
@@ -2889,9 +2900,9 @@ class PlayState extends MusicBeatState
 					notes.remove(note, true);
 					note.destroy();
 				}
-	
+
 				possibleNotes.sort((a, b) -> Std.int(a.strumTime - b.strumTime));
-	
+
 				if (possibleNotes.length > 0)
 				{
 					for (shit in 0...pressArray.length)
@@ -2912,9 +2923,11 @@ class PlayState extends MusicBeatState
 							noteMiss(shit);
 				}
 			}
-		}else{
+		}
+		else
+		{
 			boyfriend.holdTimer = 0;
-	
+
 			var possibleNotes:Array<Note> = []; // notes that can be hit
 			var directionList:Array<Int> = []; // directions that can be hit
 			var dumbNotes:Array<Note> = []; // notes to kill later
@@ -2963,7 +2976,10 @@ class PlayState extends MusicBeatState
 			{
 				for (coolNote in possibleNotes)
 				{
-					if (botplay && coolNote.mustPress && coolNote.canBeHit && Rating.judgment(Math.abs(coolNote.strumTime - Conductor.songPosition)) == "sick")
+					if (botplay
+						&& coolNote.mustPress
+						&& coolNote.canBeHit
+						&& Rating.judgment(Math.abs(coolNote.strumTime - Conductor.songPosition)) == "sick")
 					{
 						playerStrums.members[coolNote.noteData].animation.play('confirm', true);
 						if (!curStage.startsWith('school'))
@@ -3057,29 +3073,29 @@ class PlayState extends MusicBeatState
 
 	/* not used anymore lol
 
-	function badNoteHit()
-	{
-		// just double pasting this shit cuz fuk u
-		// REDO THIS SYSTEM!
-		var leftP = controls.NOTE_LEFT_P;
-		var downP = controls.NOTE_DOWN_P;
-		var upP = controls.NOTE_UP_P;
-		var rightP = controls.NOTE_RIGHT_P;
+		function badNoteHit()
+		{
+			// just double pasting this shit cuz fuk u
+			// REDO THIS SYSTEM!
+			var leftP = controls.NOTE_LEFT_P;
+			var downP = controls.NOTE_DOWN_P;
+			var upP = controls.NOTE_UP_P;
+			var rightP = controls.NOTE_RIGHT_P;
 
-		if (leftP)
-			noteMiss(0);
-		if (downP)
-			noteMiss(1);
-		if (upP)
-			noteMiss(2);
-		if (rightP)
-			noteMiss(3);
-	} */
-
+			if (leftP)
+				noteMiss(0);
+			if (downP)
+				noteMiss(1);
+			if (upP)
+				noteMiss(2);
+			if (rightP)
+				noteMiss(3);
+	}*/
 	function opponentNoteHit(note:Note):Void
 	{
 		var time:Float = 0.15;
-		if(note.isSustainNote && getAnimName(note).endsWith('end')) {
+		if (note.isSustainNote && getAnimName(note).endsWith('end'))
+		{
 			time += 0.15;
 		}
 
@@ -3127,7 +3143,12 @@ class PlayState extends MusicBeatState
 		if (SONG.needsVoices)
 			vocals.volume = 1;
 
-		callOnLuas('opponentNoteHit', [notes.members.indexOf(note), note.noteType, Math.abs(note.noteData), note.isSustainNote]);
+		callOnLuas('opponentNoteHit', [
+			notes.members.indexOf(note),
+			note.noteType,
+			Math.abs(note.noteData),
+			note.isSustainNote
+		]);
 		if (!note.isSustainNote)
 		{
 			note.kill();
@@ -3176,7 +3197,12 @@ class PlayState extends MusicBeatState
 			note.wasGoodHit = true;
 			vocals.volume = 1;
 
-			callOnLuas('goodNoteHit', [notes.members.indexOf(note), note.noteType, Math.abs(note.noteData), note.isSustainNote]);
+			callOnLuas('goodNoteHit', [
+				notes.members.indexOf(note),
+				note.noteType,
+				Math.abs(note.noteData),
+				note.isSustainNote
+			]);
 
 			if (!note.isSustainNote)
 			{
@@ -3443,46 +3469,55 @@ class PlayState extends MusicBeatState
 
 	var curLight:Int = 0;
 
-	function reloadHUD(hop:Bool = false){
+	function reloadHUD(hop:Bool = false)
+	{
 		var curTime:Float = Conductor.songPosition; //- ClientPrefs.noteOffset;
-		if(curTime < 0) curTime = 0;
-		//songPercent = (curTime / songLength);
+		if (curTime < 0)
+			curTime = 0;
+		// songPercent = (curTime / songLength);
 
 		var songCalc:Float = (songLength - curTime);
-		//if(ClientPrefs.timeBarType == 'Time Elapsed') songCalc = curTime;
+		// if(ClientPrefs.timeBarType == 'Time Elapsed') songCalc = curTime;
 
 		var secondsTotal:Int = Math.floor(songCalc / 1000);
-		if(secondsTotal < 0) secondsTotal = 0;
+		if (secondsTotal < 0)
+			secondsTotal = 0;
 
 		scoreTxt.text = "Score: " + songScore + " | Seconds Total: " + FlxStringUtil.formatTime(secondsTotal, false) + " | Misses: " + misses;
 		judgementCounter.text = 'Sicks: ${sicks}\nGoods: ${goods}\nBads: ${bads}\nShits: ${shits}\nCombo: ${combo} / ${maxcombo}';
-		if (hop){
-			if(scoreTxtTween != null) {
+		if (hop)
+		{
+			if (scoreTxtTween != null)
+			{
 				scoreTxtTween.cancel();
 			}
 			scoreTxt.scale.x = 1.075;
 			scoreTxt.scale.y = 1.075;
 			scoreTxtTween = FlxTween.tween(scoreTxt.scale, {x: 1, y: 1}, 0.2, {
-				onComplete: function(twn:FlxTween) {
+				onComplete: function(twn:FlxTween)
+				{
 					scoreTxtTween = null;
 				}
 			});
 
-			if(judgementCounterTween != null) {
+			if (judgementCounterTween != null)
+			{
 				judgementCounterTween.cancel();
 			}
 			judgementCounter.scale.x = 1.075;
 			judgementCounter.scale.y = 1.075;
 			judgementCounterTween = FlxTween.tween(judgementCounter.scale, {x: 1, y: 1}, 0.2, {
-				onComplete: function(twn:FlxTween) {
+				onComplete: function(twn:FlxTween)
+				{
 					judgementCounterTween = null;
 				}
 			});
 		}
-		callOnLuas('onUpdateScore', [sicks,goods,bads,shits,misses]);
+		callOnLuas('onUpdateScore', [sicks, goods, bads, shits, misses]);
 	}
 
-	function reloadHealthBarColors(){
+	function reloadHealthBarColors()
+	{
 		healthBar.createFilledBar(FlxColor.fromRGB(dad.healthColorArray[0], dad.healthColorArray[1], dad.healthColorArray[2]),
 			FlxColor.fromRGB(boyfriend.healthColorArray[0], boyfriend.healthColorArray[1], boyfriend.healthColorArray[2]));
 
@@ -3518,21 +3553,27 @@ class PlayState extends MusicBeatState
 		}
 	}
 
-	public function callOnLuas(event:String, args:Array<Dynamic>, ignoreStops = true, exclusions:Array<String> = null, excludeValues:Array<Dynamic> = null):Dynamic {
+	public function callOnLuas(event:String, args:Array<Dynamic>, ignoreStops = true, exclusions:Array<String> = null,
+			excludeValues:Array<Dynamic> = null):Dynamic
+	{
 		var returnVal = LuaHandler.Function_Continue;
 		#if linc_luajit
-		if(exclusions == null) exclusions = [];
-		if(excludeValues == null) excludeValues = [];
+		if (exclusions == null)
+			exclusions = [];
+		if (excludeValues == null)
+			excludeValues = [];
 
-		for (script in luaArray) {
-			if(exclusions.contains(script.scriptName))
+		for (script in luaArray)
+		{
+			if (exclusions.contains(script.scriptName))
 				continue;
 
 			var myValue = script.call(event, args);
-			if(myValue == LuaHandler.Function_StopLua && !ignoreStops)
+			if (myValue == LuaHandler.Function_StopLua && !ignoreStops)
 				break;
-			
-			if(myValue != null && myValue != LuaHandler.Function_Continue) {
+
+			if (myValue != null && myValue != LuaHandler.Function_Continue)
+			{
 				returnVal = myValue;
 			}
 		}
@@ -3540,21 +3581,26 @@ class PlayState extends MusicBeatState
 		return returnVal;
 	}
 
-	public function setOnLuas(variable:String, arg:Dynamic) {
+	public function setOnLuas(variable:String, arg:Dynamic)
+	{
 		#if linc_luajit
-		for (i in 0...luaArray.length) {
+		for (i in 0...luaArray.length)
+		{
 			luaArray[i].set(variable, arg);
 		}
 		#end
 	}
 
-	public function addTextToDebug(text:String, color:FlxColor) {
+	public function addTextToDebug(text:String, color:FlxColor)
+	{
 		#if linc_luajit
-		luaDebugGroup.forEachAlive(function(spr:DebugLuaText) {
+		luaDebugGroup.forEachAlive(function(spr:DebugLuaText)
+		{
 			spr.y += 20;
 		});
 
-		if(luaDebugGroup.members.length > 34) {
+		if (luaDebugGroup.members.length > 34)
+		{
 			var blah = luaDebugGroup.members[34];
 			blah.destroy();
 			luaDebugGroup.remove(blah);
