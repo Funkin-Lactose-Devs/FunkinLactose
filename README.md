@@ -1,12 +1,15 @@
 # Friday Night Funkin'
 > Uh oh! Your tryin to kiss ur hot girlfriend, but her MEAN and EVIL dad is trying to KILL you! He's an ex-rockstar, the only way to get to his heart? The power of music...
 
-[Github](https://github.com/FunkinCrew/Funkin) | [itch.io](https://ninja-muffin24.itch.io/funkin) | [newgrounds](https://www.newgrounds.com/portal/view/770371)  
+[Join Foxacord!](https://discord.gg/btYtsZwf8N)
 
 IF YOU MAKE A MOD AND DISTRIBUTE A MODIFIED / RECOMPILED VERSION, YOU MUST OPEN SOURCE YOUR MOD AS WELL
 also i dont think i can get week 7 cutscenes workin'
 
 # Funkin' Lactose
+
+BY THE WAY THIS ENGINE IS IN EMBRYONIC STAGE SO IF YOU WANNA MAKE A FNF MOD WITH THIS DO IT AT YOUR OWN RISK
+ALSO THERES NOT MUCH MOD SUPPORT SO PLEASE USE THE SOURCE CODE JUST IN CASE
 
 ## Funkin' Lactose is an open source modification of the Friday Night Funkin' engine. The reason this is important will have to do with future plans of ours, so stay tuned if you'd like to hear more about those;
 Funkin' Lactose is based off of the aforementioned Friday Night Funkin' source. It's made to be a bit more accessible and slightly easier to build off of, as well as having several quality of life changes and a significantly more focused direction on the more traditional feel of rhythm games, all while still keeping the same style and feel of Friday Night Funkin'. I know a lot of source codes are hard to work with for FNF, usually very unoptimised or very unorganised (Codename and Psych, I'm excluding you two.), I am planning to fix both of these issues with Funkin' Lactose in the future. True to the spirit of Newgrounds, Friday Night Funkin' should be accessible by everyone, both modders and gamers alike, and I wanted to make it my goal to fix a lot of the issues that prevented people from being able to use the base game's engine, as well as create a bit more polished engine, as I was unhappy with the current existing ones at the time.
