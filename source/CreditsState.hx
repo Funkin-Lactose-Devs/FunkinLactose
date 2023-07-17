@@ -51,7 +51,7 @@ class CreditsState extends MusicBeatState
 		else
 		{
 			trace("Cannot find 'creditsList' in data directory.");
-			trace("Replacing it with normal credits...");
+			trace("Replacing it with placeholder credits...");
 			initCreditlist = "CharlesCatYT:Main Programmer and Director\n
 			MemeHoovy:Assistant Coder".trim()
 				.split('\n');
@@ -60,8 +60,6 @@ class CreditsState extends MusicBeatState
 			{
 				initCreditlist[i] = initCreditlist[i].trim();
 			}
-			// initCreditlist = null;
-			// initCreditlist = 'Credits List not found.';
 		}
 
 		for (i in 0...initCreditlist.length)
@@ -82,7 +80,7 @@ class CreditsState extends MusicBeatState
 		descText = new FlxText(50, 600, 1180, "", 32);
 		descText.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		descText.scrollFactor.set();
-		descText.text = 'what';
+		descText.text = 'idk !!!';
 		descText.borderSize = 2.4;
 		add(descText);
 

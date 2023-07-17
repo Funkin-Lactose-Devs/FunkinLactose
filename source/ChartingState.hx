@@ -186,7 +186,6 @@ class ChartingState extends MusicBeatState
 		check_voices.callback = function()
 		{
 			_song.needsVoices = check_voices.checked;
-			trace('CHECKED!');
 		};
 
 		var check_mute_inst = new FlxUICheckBox(10, 200, null, null, "Mute Instrumental (in editor)", 100);
@@ -536,7 +535,6 @@ class ChartingState extends MusicBeatState
 						}
 						else
 						{
-							trace('tryin to delete note...');
 							deleteNote(note);
 						}
 					}
@@ -719,9 +717,7 @@ class ChartingState extends MusicBeatState
 		{
 			if (curSelectedNote[3] != null)
 			{
-				trace('ALT NOTE SHIT');
 				curSelectedNote[3] = !curSelectedNote[3];
-				trace(curSelectedNote[3]);
 			}
 			else
 				curSelectedNote[3] = true;
@@ -772,7 +768,6 @@ class ChartingState extends MusicBeatState
 
 	function changeSection(sec:Int = 0, ?updateMusic:Bool = true):Void
 	{
-		trace('changing section' + sec);
 
 		if (_song.notes[sec] != null)
 		{
@@ -1042,7 +1037,7 @@ class ChartingState extends MusicBeatState
 
 	function loadLevel():Void
 	{
-		trace(_song.notes);
+		trace('loading song we out here');
 	}
 
 	function getNotes():Array<Dynamic>
