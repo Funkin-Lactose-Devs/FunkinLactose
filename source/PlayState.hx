@@ -1457,7 +1457,7 @@ class PlayState extends MusicBeatState
 
 		// new FlxTimer().start(0.01, function(tmr) cutsceneSound.play()); // cutsceneSound.play();
 		// cutsceneSound.play();
-		// tankCutscene.startSyncAudio = cutsceneSound;
+		tankCutscene.startSyncAudio = cutsceneSound;
 		// tankCutscene.animation.curAnim.curFrame
 
 		FlxG.camera.zoom = defaultCamZoom * 1.15;
