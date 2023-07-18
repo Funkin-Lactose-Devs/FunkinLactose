@@ -1474,6 +1474,7 @@ class PlayState extends MusicBeatState
 			FlxG.camera.zoom = defaultCamZoom * 1.4;
 			FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom + 0.1}, 0.5, {ease: FlxEase.elasticOut});
 			FlxG.camera.focusOn(camFollow.getPosition());
+			camGame.shake(0.1, 0.1);
 			boyfriend.playAnim('singUPmiss');
 			boyfriend.animation.finishCallback = function(animFinish:String)
 			{
