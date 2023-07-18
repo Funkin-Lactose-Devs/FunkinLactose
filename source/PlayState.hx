@@ -1395,12 +1395,13 @@ class PlayState extends MusicBeatState
 		add(bfCatchGf);
 		bfCatchGf.visible = false;
 
+		var cutsceneSound:FlxSound = new FlxSound();
+
 		if (PreferencesMenu.getPref('censor-naughty'))
 			tankCutscene.startSyncAudio = FlxG.sound.play(Paths.sound('stressCutscene'));
 		else
 		{
 			tankCutscene.startSyncAudio = FlxG.sound.play(Paths.sound('song3censor'));
-			// cutsceneSound.loadEmbedded(Paths.sound('song3censor'));
 
 			var censor:FlxSprite = new FlxSprite();
 			censor.frames = Paths.getSparrowAtlas('cutsceneStuff/censor');
@@ -1408,7 +1409,6 @@ class PlayState extends MusicBeatState
 			censor.animation.play('censor');
 			add(censor);
 			censor.visible = false;
-			//
 
 			new FlxTimer().start(4.6, function(censorTimer:FlxTimer)
 			{
